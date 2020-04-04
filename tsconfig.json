@@ -15,7 +15,12 @@
       "skipLibCheck": true,
       "baseUrl": "./src",
       "paths": {
-
+        "@components/*": [
+          "./components/*"
+        ],
+        "@utils/*": [
+          "./utils/*"
+        ]
       }
     },
     "exclude": [
