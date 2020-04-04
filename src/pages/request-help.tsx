@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { useForm } from 'react-hook-form';
 
-import Layout from '../components/layout/layout';
-import Image from '../components/image';
-import SEO from '../components/seo';
+import {Layout} from '../components/layout/layout';
+import {Image} from '../components/image';
+import {SEO} from '../components/seo';
 import { Input } from '../components/form/input';
 
 const IndexPage = () => {
