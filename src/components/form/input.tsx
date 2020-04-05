@@ -1,24 +1,28 @@
-import React, { memo, FC, InputHTMLAttributes } from 'react';
+import React, { memo, FC } from 'react';
 import styled from 'styled-components';
 import { colors } from '@utils/colors';
+import { selectInputStyles } from './_common';
 
-interface InputProps extends InputHTMLAttributes<string> {
+interface InputProps {
   register: any;
+  name: string;
+  type?: HTMLInputElement['type'];
+  onChangeText?: (text: string) => void;
 }
 
 const InputComponent = styled.input`
-  padding: 8px 6px;
-  outline: 0;
-  background: #fafafa;
-  border: 1px solid #dfe1e6;
-  border-radius: 3px;
-  min-width: 200px;
-
-  &:focus {
-    border-color: ${colors.blue200};
-  }
+  ${selectInputStyles}
 `;
 
-export const Input: FC<InputProps> = memo(({ register, ...props }) => {
-  return <InputComponent {...props} ref={register} />;
-});
+export const Input: FC<InputProps> = memo(
+  ({ register, onChangeText, name, ...props }) => {
+    return (
+      <InputComponent
+        name={name}
+        onChange={event => onChangeText?.(event.target.value)}
+        {...props}
+        ref={register}
+      />
+    );
+  }
+);
