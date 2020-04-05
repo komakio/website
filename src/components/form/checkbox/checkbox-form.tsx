@@ -6,7 +6,7 @@ interface CheckboxProps {
   control: Control<Record<string, any>>;
   name: string;
   isRequired?: boolean;
-  label: string;
+  label: string | JSX.Element;
 }
 
 export const Checkbox: FC<CheckboxProps> = memo(

@@ -6,7 +6,7 @@ interface CheckboxViewProps {
   onChange?: (value: boolean) => void;
   checked?: boolean;
   name: string;
-  label: string;
+  label: string | JSX.Element;
 }
 
 const Container = styled.div`

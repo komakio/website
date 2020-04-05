@@ -1,11 +1,11 @@
 import React, { memo, FC } from 'react';
-import styled from 'styled-components';
-import { colors } from '@utils/colors';
+import styled, { CSSProperties } from 'styled-components';
 import { selectInputStyles } from './_common';
 
 interface SelectProps {
   register: any;
   name: string;
+  style?: CSSProperties;
 }
 
 const SelectComponent = styled.select`
@@ -13,14 +13,9 @@ const SelectComponent = styled.select`
 `;
 
 export const Select: FC<SelectProps> = memo(
-  ({ register, name, children, ...props }) => {
+  ({ register, name, children, style, ...props }) => {
     return (
-      <SelectComponent
-        name={name}
-        // onChange={event => onChangeText?.(event.target.value)}
-        {...props}
-        ref={register}
-      >
+      <SelectComponent name={name} style={style} {...props} ref={register}>
         {children}
       </SelectComponent>
     );
