@@ -4,5 +4,5 @@ export const GlobalStyles = createGlobalStyle`
     body {
         font-family: 'Sen', sans-serif;
     }
-    .grecaptcha-badge { visibility: hidden; 
+    .grecaptcha-badge { visibility: hidden; }
 `;
