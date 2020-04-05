@@ -7,6 +7,7 @@
   "dependencies": {
     "@popperjs/core": "^2.2.1",
     "@types/react-helmet": "^5.0.15",
+    "@types/react-recaptcha-v3": "^1.1.1",
     "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.19.45",
     "gatsby-image": "^2.2.44",
@@ -26,6 +27,8 @@
     "react-helmet": "^5.2.1",
     "react-hook-form": "^5.2.0",
     "react-popper": "^2.0.0",
+    "react-recaptcha-v3": "^1.1.0",
+    "styled-bootstrap-grid": "^3.1.0",
     "styled-components": "^5.0.1",
     "styled-reset": "^4.1.2",
     "use-debounce": "^3.4.1"
