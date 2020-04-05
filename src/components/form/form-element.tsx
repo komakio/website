@@ -4,13 +4,13 @@ import { FieldError } from 'react-hook-form';
 import { colors } from '@utils/colors';
 
 interface FormElementProps {
-  label: string;
+  label?: string;
   error?: FieldError;
   validateErrorType?: string;
 }
 
 const FormElementComponent = styled.div`
-  padding: 10px 30px;
+  margin-bottom: 20px;
 
   label {
     display: block;
@@ -31,9 +31,11 @@ export const FormElement: FC<FormElementProps> = memo(
 
     return (
       <FormElementComponent>
-        <label>
-          {label} {errorType && <span className="error">{errorType}</span>}
-        </label>
+        {label && (
+          <label>
+            {label} {errorType && <span className="error">{errorType}</span>}
+          </label>
+        )}
         {children}
       </FormElementComponent>
     );

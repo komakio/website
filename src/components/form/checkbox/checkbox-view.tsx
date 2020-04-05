@@ -1,5 +1,6 @@
 import React, { memo, FC } from 'react';
 import styled from 'styled-components';
+import { colors } from '@utils/colors';
 
 interface CheckboxViewProps {
   onChange?: (value: boolean) => void;
@@ -11,9 +12,10 @@ interface CheckboxViewProps {
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 5px;
 
   .label {
-    margin-left: 5px;
+    margin-left: 10px;
     font-size: 14px;
     cursor: pointer;
   }
@@ -39,14 +41,15 @@ const CheckboxContainer = styled.div<{ checked: boolean }>`
   }
 
   input:focus + .checkbox {
-    box-shadow: 0 0 0 3px pink;
+    box-shadow: 0 0 0 3px ${colors.green100};
   }
 
   .checkbox {
     display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: ${props => (props.checked ? 'salmon' : 'papayawhip')};
+    width: 20px;
+    height: 20px;
+    background: ${props => (props.checked ? colors.green200 : '#fafafa')};
+    border: 1px solid ${props => (props.checked ? colors.green200 : '#dfe1e6')};
     border-radius: 3px;
     transition: all 150ms;
     cursor: pointer;

@@ -7,6 +7,14 @@ import { BaseCSS } from 'styled-bootstrap-grid';
 import { Header } from './header';
 import { GlobalStyles } from './global-styles';
 import { RecaptchaInit } from '@components/recaptcha';
+import styled from 'styled-components';
+
+const Footer = styled.footer`
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  font-size: 11px;
+`;
 
 export const Layout: FC = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -28,7 +36,7 @@ export const Layout: FC = ({ children }) => {
       <Header siteTitle={data.site.siteMetadata.title} />
       <div>
         <main>{children}</main>
-        <footer>© {new Date().getFullYear()}, Nabo NGO</footer>
+        <Footer>© {new Date().getFullYear()}, Nabo NGO</Footer>
       </div>
     </>
   );

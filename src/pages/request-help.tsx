@@ -14,6 +14,7 @@ import { COUNTRIES } from '@utils/countries';
 import { Checkbox } from '@components/form/checkbox';
 import { Recaptcha } from '@components/recaptcha';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
+import styled from 'styled-components';
 
 type FormData = {
   firstName: string;
@@ -22,11 +23,14 @@ type FormData = {
   email: string;
   dialCode: string;
   phone: string;
-  captcha: string;
   gdpr: boolean;
   terms: boolean;
   privacy: boolean;
 };
+
+const GooglePrivacy = styled.div`
+  font-size: 11px;
+`;
 
 const IndexPage = () => {
   const { register, handleSubmit, errors, control } = useForm<FormData>({
@@ -43,41 +47,52 @@ const IndexPage = () => {
       <SEO title="Request help" />
       <Recaptcha action="needer_profile_creation" />
       <form onSubmit={onSubmit} noValidate={true}>
-        <Container fluid>
+        <Container>
           <Row>
-            <Col col={8} xs={12}>
-              <FormElement
-                label="Email"
-                error={errors.email}
-                validateErrorType="email"
-              >
-                <Input
-                  name="email"
-                  type="email"
-                  register={register({
-                    required: true,
-                    validate: FormUtils.emailValidate,
-                  })}
-                />
-              </FormElement>
-              <FormElement label="First name" error={errors.firstName}>
-                <Input
-                  name="firstName"
-                  register={register({ required: true })}
-                />
-              </FormElement>
-              <FormElement label="Last name" error={errors.lastName}>
-                <Input
-                  name="lastName"
-                  register={register({ required: true })}
-                />
-              </FormElement>
-              <FormElement label="Location" error={errors.location}>
-                <AutoComplete
-                  name="location"
-                  register={register({ required: true })}
-                />
-              </FormElement>
+            <Col col={12} md={6}>
+              <Row>
+                <Col col={6} xs={12}>
+                  <FormElement label="First name" error={errors.firstName}>
+                    <Input
+                      name="firstName"
+                      register={register({ required: true })}
+                    />
+                  </FormElement>
+                </Col>
+
+                <Col col={6} xs={12}>
+                  <FormElement label="Last name" error={errors.lastName}>
+                    <Input
+                      name="lastName"
+                      register={register({ required: true })}
+                    />
+                  </FormElement>
+                </Col>
+                <Col col={6} xs={12}>
+                  <FormElement label="Location" error={errors.location}>
+                    <AutoComplete
+                      name="location"
+                      register={register({ required: true })}
+                    />
+                  </FormElement>
+                </Col>
+                <Col col={6} xs={12}>
+                  <FormElement
+                    label="Email"
+                    error={errors.email}
+                    validateErrorType="email"
+                  >
+                    <Input
+                      name="email"
+                      type="email"
+                      register={register({
+                        required: true,
+                        validate: FormUtils.emailValidate,
+                      })}
+                    />
+                  </FormElement>
+                </Col>
+              </Row>
               <FormElement label="Phone" error={errors.phone}>
                 <Select name="dialCode" register={register({ required: true })}>
                   {COUNTRIES.map(c => (
@@ -88,11 +103,9 @@ const IndexPage = () => {
                 </Select>
                 <Input name="phone" register={register({ required: true })} />
               </FormElement>
-            </Col>
-            <Col col={4} xs={12}>
               <FormElement
-                label="Terms"
-                error={errors.terms}
+                label="Terms & Privacy"
+                error={errors.terms || errors.gdpr || errors.privacy}
                 validateErrorType="required"
               >
                 <Checkbox
@@ -101,24 +114,12 @@ const IndexPage = () => {
                   isRequired={true}
                   label="I have read and agree with the <0>terms of service</0>"
                 />
-              </FormElement>
-              <FormElement
-                label="Privacy"
-                error={errors.privacy}
-                validateErrorType="required"
-              >
                 <Checkbox
                   name="privacy"
                   control={control}
                   isRequired={true}
                   label="I understand and consent to the collection and use of my personal information, including my Health Data, as described in the <0>privacy policy</0>"
                 />
-              </FormElement>
-              <FormElement
-                label="GDPR"
-                error={errors.gdpr}
-                validateErrorType="required"
-              >
                 <Checkbox
                   name="gdpr"
                   control={control}
@@ -126,13 +127,19 @@ const IndexPage = () => {
                   label="I agree with the processing of my email address by Komak for the purpose of establishing communication with their user volunteers"
                 />
               </FormElement>
-              This site is protected by reCAPTCHA and the Google{' '}
-              <a href="https://policies.google.com/privacy">Privacy Policy</a>{' '}
-              and
-              <a href="https://policies.google.com/terms">
-                Terms of Service
-              </a>{' '}
-              apply.
+
+              <GooglePrivacy>
+                This site is protected by reCAPTCHA and the Google{' '}
+                <a href="https://policies.google.com/privacy">Privacy Policy</a>{' '}
+                and
+                <a href="https://policies.google.com/terms">
+                  Terms of Service
+                </a>{' '}
+                apply.
+              </GooglePrivacy>
+            </Col>
+            <Col col={12} md={6}>
+              BLALB
             </Col>
           </Row>
         </Container>
