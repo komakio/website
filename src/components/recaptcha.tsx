@@ -20,6 +20,7 @@ export const Recaptcha: FC<RecaptchaProps> = memo(({ action }) => {
       sitekey={Environment.recaptchaKey}
       action={action}
       verifyCallback={async recaptchaToken => {
+        console.log(recaptchaToken);
         const { data } = await Axios.post(
           `${Environment.backendUrl}/v1/users/captcha`,
           {

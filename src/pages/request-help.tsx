@@ -36,6 +36,9 @@ const PhoneContainer = styled.div`
   display: flex;
   flex-direction: row;
 `;
+const Flex = styled.div`
+  flex: 1;
+`;
 
 const IndexPage = () => {
   const { register, handleSubmit, errors, control } = useForm<FormData>({
@@ -107,11 +110,10 @@ const IndexPage = () => {
                 error={errors.phone || errors.dialCode}
               >
                 <PhoneContainer>
-                  <div>
+                  <Flex style={{ marginRight: 3 }}>
                     <Select
                       name="dialCode"
                       register={register({ required: true })}
-                      style={{ marginRight: 3 }}
                     >
                       <Option value="">Select your country</Option>
                       {COUNTRIES.map(c => (
@@ -120,8 +122,13 @@ const IndexPage = () => {
                         </Option>
                       ))}
                     </Select>
-                  </div>
-                  <Input name="phone" register={register({ required: true })} />
+                  </Flex>
+                  <Flex>
+                    <Input
+                      name="phone"
+                      register={register({ required: true })}
+                    />
+                  </Flex>
                 </PhoneContainer>
               </FormElement>
               <FormElement
