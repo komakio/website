@@ -107,18 +107,20 @@ const IndexPage = () => {
                 error={errors.phone || errors.dialCode}
               >
                 <PhoneContainer>
-                  <Select
-                    name="dialCode"
-                    register={register({ required: true })}
-                    style={{ marginRight: 3 }}
-                  >
-                    <Option value="">Select your country</Option>
-                    {COUNTRIES.map(c => (
-                      <Option value={c.dialCode} key={c.code}>
-                        {c.name} ({c.dialCode})
-                      </Option>
-                    ))}
-                  </Select>
+                  <div>
+                    <Select
+                      name="dialCode"
+                      register={register({ required: true })}
+                      style={{ marginRight: 3 }}
+                    >
+                      <Option value="">Select your country</Option>
+                      {COUNTRIES.map(c => (
+                        <Option value={c.dialCode} key={c.code}>
+                          {c.name} ({c.dialCode})
+                        </Option>
+                      ))}
+                    </Select>
+                  </div>
                   <Input name="phone" register={register({ required: true })} />
                 </PhoneContainer>
               </FormElement>

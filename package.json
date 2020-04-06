@@ -8,6 +8,7 @@
     "@popperjs/core": "^2.2.1",
     "@types/react-helmet": "^5.0.15",
     "@types/react-recaptcha-v3": "^1.1.1",
+    "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.19.45",
     "gatsby-image": "^2.2.44",
