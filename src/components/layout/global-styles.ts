@@ -23,4 +23,12 @@ export const GlobalStyles = createGlobalStyle`
         font-size: 22px;
         margin-bottom: 20px;
     }
+
+    ul {
+        list-style-type: circle;
+
+        li {
+            margin-bottom: 20px;
+        }
+    }
 `;

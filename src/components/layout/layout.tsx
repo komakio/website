@@ -1,6 +1,4 @@
-import React, { FC, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
+import React, { FC } from 'react';
 import { Reset } from 'styled-reset';
 import { BaseCSS } from 'styled-bootstrap-grid';
 
@@ -8,6 +6,7 @@ import { Header } from './header';
 import { GlobalStyles } from './global-styles';
 import { RecaptchaInit } from '@components/recaptcha';
 import styled from 'styled-components';
+import { LanguageChooser, LanguageContext } from '@components/language';
 
 const Footer = styled.footer`
   position: fixed;
@@ -16,32 +15,24 @@ const Footer = styled.footer`
   font-size: 11px;
 `;
 
-export const Layout: FC = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+interface LayoutProps {
+  lang: string;
+  topMenus: any[];
+}
 
+export const Layout: FC<LayoutProps> = ({ children, lang, topMenus }) => {
   return (
-    <>
+    <LanguageContext.Provider value={lang}>
       <Reset />
       <GlobalStyles />
       <RecaptchaInit />
       <BaseCSS />
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header topMenus={topMenus} />
+      <LanguageChooser />
       <div>
         <main>{children}</main>
         <Footer>© {new Date().getFullYear()}, Nabo NGO</Footer>
       </div>
-    </>
+    </LanguageContext.Provider>
   );
-};
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 };

@@ -1,5 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+try {
+  require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`,
+  });
+} catch (e) {
+  console.log(e);
+}
 
 module.exports = {
   siteMetadata: {
@@ -40,6 +47,34 @@ module.exports = {
         theme_color: `#008C59`,
         display: `minimal-ui`,
         icon: `src/images/app-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: 'gatsby-source-prismic-graphql',
+      options: {
+        repositoryName: 'Komak',
+        accessToken: `${process.env.PRISMIC_API_KEY}`,
+        path: '/preview',
+        previews: true,
+        defaultLang: 'en-us',
+        // shortenUrlLangs: true,
+        langs: ['en-us', 'fr'],
+        pages: [
+          {
+            type: 'Page',
+            match: '/:lang?/:uid',
+            filter: data => data.node._meta.uid !== 'homepage',
+            path: '/pages',
+            component: require.resolve('./src/templates/page.tsx'),
+          },
+          {
+            type: 'Page',
+            match: '/:lang?',
+            filter: data => data.node._meta.uid === 'homepage',
+            path: '/homepageqwqdqwdqw',
+            component: require.resolve('./src/templates/page.tsx'),
+          },
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

@@ -1,13 +1,11 @@
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
+import { Link, graphql, StaticQuery } from 'gatsby';
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { colors } from '@utils/colors';
 import { Container } from 'styled-bootstrap-grid';
-
-interface HeaderProps {
-  siteTitle: string;
-}
+import { HeaderLink } from './header-link';
+import { useLanguage } from '@components/language';
+import { Language } from '@utils/language';
 
 export const headerHeight = 65;
 
@@ -54,24 +52,70 @@ const Flex = styled.div`
   flex: 1;
 `;
 
-export const Header: FC<HeaderProps> = ({ siteTitle }) => (
-  <StyledHeader>
-    <Container>
-      <h1>
-        <Link to="/">{siteTitle}</Link>
-      </h1>
-      <Flex />
-      <h3>
-        <a href="/">Back to the website</a>
-      </h3>
-    </Container>
-  </StyledHeader>
-);
+interface HeaderProps {
+  topMenus: any[];
+}
+export const Header: FC<HeaderProps> = ({ topMenus }) => {
+  const language = useLanguage();
+  const graphQLQuery = graphql`
+    query {
+      allSitePage(
+        filter: { context: { lang: { eq: "en-us" }, uid: { ne: "" } } }
+      ) {
+        edges {
+          node {
+            context {
+              lang
+              uid
+              alternateLanguages {
+                uid
+                lang
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+  // const query = useStaticQuery(graphQLQuery);
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-};
-
-Header.defaultProps = {
-  siteTitle: ``,
+  return (
+    <StaticQuery
+      query={graphQLQuery}
+      render={query => {
+        const pages = query.allSitePage.edges.map(e => e.node.context);
+        return (
+          <StyledHeader>
+            <Container>
+              <h1>
+                <Link
+                  to={language === Language.defaultLang ? '/' : `/${language}`}
+                >
+                  Komak
+                </Link>
+              </h1>
+              <Flex />
+              <nav style={{ height: 65, paddingTop: 26 }}>
+                {topMenus?.map((element: any) => {
+                  let link = element.link;
+                  if (language !== Language.defaultLang) {
+                    const page = pages.find(p => `/${p.uid}` === element.link);
+                    const languagePage = page?.alternateLanguages.find(
+                      c => c.lang === language
+                    );
+                    if (languagePage?.uid) {
+                      link = `/${language}/${languagePage?.uid}`;
+                    }
+                  }
+                  return (
+                    <HeaderLink key={link} link={link} title={element.title} />
+                  );
+                })}
+              </nav>
+            </Container>
+          </StyledHeader>
+        );
+      }}
+    />
+  );
 };
