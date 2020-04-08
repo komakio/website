@@ -13,31 +13,52 @@ const Page = (props: any) => {
 
   const topMenus = props.data.prismic?.allTopmenus?.edges[0].node.elements;
 
-  const { title, description, body, _meta } = doc.node;
+  const { meta_title, meta_description, body, _meta } = doc.node;
 
   return (
     <Layout lang={_meta.lang} topMenus={topMenus}>
-      <Container>
-        <SEO
-          lang={_meta.lang}
-          title={title}
-          description={description}
-          alternateLanguages={_meta.alternateLanguages}
-        />
+      <SEO
+        lang={_meta.lang}
+        title={meta_title}
+        description={meta_description}
+        alternateLanguages={_meta.alternateLanguages}
+      />
 
-        {body?.map((item: any, index: number) => (
-          <PageElement
-            key={`${item.__typename}${index}`}
-            item={item}
-            index={index}
-          />
-        ))}
-      </Container>
+      {body?.map((item: any, index: number) => (
+        <PageElement
+          key={`${item.__typename}${index}`}
+          item={item}
+          index={index}
+        />
+      ))}
     </Layout>
   );
 };
 
 export default Page;
+// query MyQuery {
+//   prismic {
+//     allTopmenus {
+//       edges {
+//         node {
+//           elements {
+//             menu_link {
+//               ... on PRISMIC_Page {
+//                 _meta {
+//                   alternateLanguages {
+//                     lang
+//                     uid
+//                   }
+//                 }
+//                 title
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
 export const query = graphql`
   query PageQuery($uid: String, $lang: String) {
@@ -56,8 +77,8 @@ export const query = graphql`
       allPages(uid: $uid, lang: $lang) {
         edges {
           node {
-            title
-            description
+            meta_title
+            meta_description
             _meta {
               lang
               alternateLanguages {
@@ -85,6 +106,55 @@ export const query = graphql`
                 label
                 primary {
                   heading
+                }
+              }
+              ... on PRISMIC_PageBodyTwo_columns_rich_text {
+                type
+                fields {
+                  rich_text_column
+                  two_columns_cta_label
+                  two_columns_cta_link {
+                    ... on PRISMIC_Page {
+                      _meta {
+                        uid
+                      }
+                    }
+                  }
+                }
+              }
+              ... on PRISMIC_PageBodyIcon_boxes {
+                type
+                primary {
+                  icon_box_title
+                }
+                fields {
+                  icon_box_description
+                  icon_box_icon
+                  icon_box_title
+                  icon_box_link {
+                    ... on PRISMIC_Page {
+                      _meta {
+                        uid
+                      }
+                    }
+                  }
+                }
+              }
+              ... on PRISMIC_PageBodyFull_width_background {
+                type
+                label
+                primary {
+                  full_width_cta_label
+                  full_width_cta_link {
+                    ... on PRISMIC_Page {
+                      _meta {
+                        uid
+                      }
+                    }
+                  }
+                  full_width_image
+                  full_width_subtitle
+                  full_width_title
                 }
               }
             }

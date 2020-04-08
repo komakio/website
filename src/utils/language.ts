@@ -7,9 +7,12 @@ export class Language {
     l => l.split('-')[0]
   );
 
-  //   public static getCurrentLanguage() {
-  //     return this.getFromLocalStorage() || this.getFromPath() || 'en';
-  //   }
+  public static getLanguageLink(currentLanguage: string, uid: string) {
+    if (currentLanguage === this.defaultLang) {
+      return `/${uid}`;
+    }
+    return `/${currentLanguage}/${uid}`;
+  }
 
   public static detect() {
     const localStorageValue = this.getFromLocalStorage();
