@@ -6,14 +6,16 @@ import { SEO } from '@components/seo';
 import { PageElement } from './element';
 
 const Page = (props: any) => {
+  console.log('yooo');
   const doc = props.data?.prismic?.allPages?.edges?.slice(0, 1)?.pop();
+  console.log(doc);
   if (!doc?.node) {
     return null;
   }
 
   const topMenus = props.data.prismic?.allTopmenus?.edges[0].node.elements;
 
-  const { meta_title, meta_description, body, _meta } = doc.node;
+  const { meta_title, meta_description, social_image, body, _meta } = doc.node;
 
   return (
     <Layout lang={_meta.lang} topMenus={topMenus}>
@@ -22,6 +24,7 @@ const Page = (props: any) => {
         title={meta_title}
         description={meta_description}
         alternateLanguages={_meta.alternateLanguages}
+        image={social_image}
       />
 
       {body?.map((item: any, index: number) => (
@@ -68,7 +71,13 @@ export const query = graphql`
           node {
             elements {
               button
-              link
+              menu_link {
+                ... on PRISMIC_Page {
+                  _meta {
+                    uid
+                  }
+                }
+              }
               title
             }
           }
@@ -79,6 +88,7 @@ export const query = graphql`
           node {
             meta_title
             meta_description
+            social_image
             _meta {
               lang
               alternateLanguages {
@@ -138,6 +148,19 @@ export const query = graphql`
                       }
                     }
                   }
+                }
+              }
+              ... on PRISMIC_PageBodyContact_form {
+                type
+                primary {
+                  contact_form_body
+                  contact_form_email_label
+                  contact_form_message_label
+                  contact_form_name_label
+                  contact_form_submit_label
+                  contact_form_reason
+                  contact_form_success_label
+                  contact_form_failed_label
                 }
               }
               ... on PRISMIC_PageBodyFull_width_background {

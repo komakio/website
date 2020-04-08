@@ -1,4 +1,4 @@
-import React, { memo, FC } from 'react';
+import React, { memo, FC, useMemo } from 'react';
 import styled from 'styled-components';
 import { FieldError } from 'react-hook-form';
 import { colors } from '@utils/colors';
@@ -29,14 +29,23 @@ export const FormElement: FC<FormElementProps> = memo(
     const errorType =
       (error?.type === 'validate' && validateErrorType) || error?.type;
 
+    const changedChildren = useMemo(() => {
+      return React.Children.map(children, (child: any, index) => {
+        if (!child) {
+          return null;
+        }
+        return React.cloneElement(child, { ...child.props, error });
+      });
+    }, [children, error]);
+
     return (
       <FormElementComponent>
         {label && (
           <label>
-            {label} {errorType && <span className="error">{errorType}</span>}
+            {label} {errorType && <span className="error">*</span>}
           </label>
         )}
-        {children}
+        {changedChildren}
       </FormElementComponent>
     );
   }

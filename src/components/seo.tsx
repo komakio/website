@@ -11,10 +11,13 @@ interface SEOProps {
     lang: string;
     uid: string;
   }[];
+  image?: {
+    url: string;
+  };
 }
 
 export const SEO: FC<SEOProps> = memo(
-  ({ description, lang, meta, title, alternateLanguages }) => {
+  ({ description, lang, meta, title, alternateLanguages, image }) => {
     const graphQLQuery = graphql`
       query {
         site {
@@ -27,7 +30,7 @@ export const SEO: FC<SEOProps> = memo(
       }
     `;
     // const { site } = useStaticQuery(graphQLQuery);
-
+    // 'https://images.prismic.io/komak/3ebea28b-f922-4970-9108-12f344c9c5d6_%28Put+Here%29+Cover+%26+Profile+photo.png?auto=compress,format';
     return (
       <StaticQuery
         query={graphQLQuery}
@@ -63,6 +66,18 @@ export const SEO: FC<SEOProps> = memo(
                 {
                   property: `og:type`,
                   content: `website`,
+                },
+                {
+                  property: 'og:image',
+                  content: image
+                    ? image.url
+                    : 'https://images.prismic.io/komak/3ebea28b-f922-4970-9108-12f344c9c5d6_%28Put+Here%29+Cover+%26+Profile+photo.png?auto=compress,format',
+                },
+                {
+                  property: 'twitter:image',
+                  content: image
+                    ? image.url
+                    : 'https://images.prismic.io/komak/3ebea28b-f922-4970-9108-12f344c9c5d6_%28Put+Here%29+Cover+%26+Profile+photo.png?auto=compress,format',
                 },
                 {
                   name: `twitter:card`,

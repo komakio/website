@@ -97,18 +97,25 @@ export const Header: FC<HeaderProps> = ({ topMenus }) => {
               <Flex />
               <nav style={{ height: 65, paddingTop: 26 }}>
                 {topMenus?.map((element: any) => {
-                  let link = element.link;
-                  if (language !== Language.defaultLang) {
-                    const page = pages.find(p => `/${p.uid}` === element.link);
-                    const languagePage = page?.alternateLanguages.find(
-                      c => c.lang === language
-                    );
-                    if (languagePage?.uid) {
-                      link = `/${language}/${languagePage?.uid}`;
-                    }
-                  }
+                  // let link = element.menu_link?._meta.uid;
+                  // if (language !== Language.defaultLang) {
+                  //   const page = pages.find(p => `/${p.uid}` === element.link);
+                  //   const languagePage = page?.alternateLanguages.find(
+                  //     c => c.lang === language
+                  //   );
+                  //   if (languagePage?.uid) {
+                  //     link = `/${language}/${languagePage?.uid}`;
+                  //   }
+                  // }
                   return (
-                    <HeaderLink key={link} link={link} title={element.title} />
+                    <HeaderLink
+                      key={element.menu_link?._meta.uid}
+                      link={Language.getLanguageLink(
+                        language,
+                        element.menu_link?._meta.uid
+                      )}
+                      title={element.title}
+                    />
                   );
                 })}
               </nav>

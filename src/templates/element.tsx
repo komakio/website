@@ -5,6 +5,7 @@ import { PageTitle } from '@components/elements/page-title';
 import { FullWidthBackground } from '@components/elements/full-width-background';
 import { IconBoxes } from '@components/elements/icon-boxes';
 import { TwoColumnsRichText } from '@components/elements/two-colums-rich-text';
+import { ContactForm } from '@components/elements/contact-form';
 
 interface PageElementProps {
   item: any;
@@ -59,6 +60,23 @@ export const PageElement: FC<PageElementProps> = memo(({ item, index }) => {
       />
     );
   }
+
+  if (item.type === 'contact_form') {
+    return (
+      <ContactForm
+        emailLabel={item.primary.contact_form_email_label}
+        nameLabel={item.primary.contact_form_name_label}
+        messageLabel={item.primary.contact_form_message_label}
+        submitLabel={item.primary.contact_form_submit_label}
+        successLabel={item.primary.contact_form_success_label}
+        failedLabel={item.primary.contact_form_failed_label}
+        reason={item.primary.contact_form_reason}
+        hasBody={item.primary.contact_form_body}
+      />
+    );
+  }
+
+  // contact_form;
   console.log(`${item.type} not defined.`);
   return null;
 });
