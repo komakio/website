@@ -19,7 +19,12 @@ const Page = memo((props: any) => {
   return (
     <Layout
       context={{
-        context: _meta,
+        context: {
+          title: meta_title,
+          description: meta_description,
+          image: social_image,
+          ..._meta,
+        },
         topMenus,
         allPages,
       }}

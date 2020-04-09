@@ -70,13 +70,11 @@ export default function HTML(props) {
         />
         {props.postBodyComponents}
 
-        {!isDev && (
-          <script
-            async
-            defer
-            src="//static.cdn.prismic.io/prismic.js?repo=Komak&new=true"
-          ></script>
-        )}
+        <script
+          async
+          defer
+          src="//static.cdn.prismic.io/prismic.js?repo=Komak&new=true"
+        ></script>
       </body>
     </html>
   );

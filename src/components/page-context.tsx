@@ -9,8 +9,16 @@ interface MetaLink {
   }[];
 }
 
+interface PContext extends MetaLink {
+  title: string;
+  description: string;
+  image: {
+    url: string;
+  };
+}
+
 export interface PageContext {
-  context: MetaLink;
+  context: PContext;
   topMenus: {
     menu_link: { _meta: MetaLink };
     title: string;
