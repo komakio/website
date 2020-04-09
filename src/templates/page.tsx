@@ -178,6 +178,15 @@ export const query = graphql`
                     }
                   }
                   full_width_image
+                  full_width_imageSharp {
+                    childImageSharp {
+                      fluid(maxWidth: 2000) {
+                        base64
+                        src
+                        srcSet
+                      }
+                    }
+                  }
                   full_width_subtitle
                   full_width_title
                 }

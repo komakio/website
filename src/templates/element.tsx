@@ -31,6 +31,7 @@ export const PageElement: FC<PageElementProps> = memo(({ item, index }) => {
         ctaLabel={item.primary.full_width_cta_label}
         ctaLink={item.primary.full_width_cta_link}
         image={item.primary.full_width_image}
+        // imageSharp={item.primary.full_width_imageSharp}
         title={item.primary.full_width_title}
         subtitle={item.primary.full_width_subtitle}
       />
