@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { Container } from 'styled-bootstrap-grid';
 import { Button } from '@components/button';
 import { Language } from '@utils/language';
-import { useLanguage } from '@components/language';
+import { useLanguage } from '@components/page-context';
 
 const StyledPageTitle = styled.h1`
   font-size: 40px;

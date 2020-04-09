@@ -1,4 +1,5 @@
 export const linkResolver = doc => {
+  console.log(doc);
   if (doc.uid === 'homepage') {
     return '/';
   }

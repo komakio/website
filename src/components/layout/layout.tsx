@@ -6,7 +6,8 @@ import { Header } from './header';
 import { GlobalStyles } from './global-styles';
 import { RecaptchaInit } from '@components/recaptcha';
 import styled from 'styled-components';
-import { LanguageChooser, LanguageContext } from '@components/language';
+import { LanguageChooser } from '@components/language';
+import { PageContext, PageContextProvider } from '@components/page-context';
 
 const Footer = styled.footer`
   position: fixed;
@@ -16,23 +17,22 @@ const Footer = styled.footer`
 `;
 
 interface LayoutProps {
-  lang: string;
-  topMenus: any[];
+  context: PageContext;
 }
 
-export const Layout: FC<LayoutProps> = ({ children, lang, topMenus }) => {
+export const Layout: FC<LayoutProps> = ({ children, context }) => {
   return (
-    <LanguageContext.Provider value={lang}>
+    <PageContextProvider.Provider value={context}>
       <Reset />
       <GlobalStyles />
       <RecaptchaInit />
       <BaseCSS />
-      <Header topMenus={topMenus} />
+      <Header />
       <LanguageChooser />
       <div>
         <main>{children}</main>
         <Footer>© {new Date().getFullYear()}, Nabo NGO</Footer>
       </div>
-    </LanguageContext.Provider>
+    </PageContextProvider.Provider>
   );
 };

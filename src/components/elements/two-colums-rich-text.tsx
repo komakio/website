@@ -3,11 +3,11 @@ import styled, { css } from 'styled-components';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 import { Button } from '@components/button';
 import { Language } from '@utils/language';
-import { useLanguage } from '@components/language';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { RichText as RichTextPrismic } from 'prismic-reactjs';
 import { Link } from 'gatsby';
+import { useLanguage } from '@components/page-context';
 
 interface TwoColumnsRichTextProps {
   items: {

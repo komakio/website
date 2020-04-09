@@ -8,10 +8,11 @@ export class Language {
   );
 
   public static getLanguageLink(currentLanguage: string, uid: string) {
+    const path = uid === 'homepage' ? '' : `/${uid}`;
     if (currentLanguage === this.defaultLang) {
-      return `/${uid}`;
+      return path;
     }
-    return `/${currentLanguage}/${uid}`;
+    return `/${currentLanguage}${path}`;
   }
 
   public static detect() {

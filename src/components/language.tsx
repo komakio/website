@@ -1,63 +1,12 @@
-import React, {
-  FC,
-  useEffect,
-  Context,
-  createContext,
-  useContext,
-  memo,
-} from 'react';
+import React, { FC, useEffect, memo } from 'react';
 import { Language } from '@utils/language';
-import { StaticQuery, graphql } from 'gatsby';
-import { withPreview } from 'gatsby-source-prismic-graphql';
-
-export const LanguageContext: Context<string> = createContext<string>(null);
-
-export const useLanguage = (): string => {
-  return useContext(LanguageContext);
-};
+import { useLanguage, useAllPages, usePageContext } from './page-context';
 
 export const LanguageChooser: FC = () => {
+  const pages = useAllPages();
   const language = useLanguage();
-  const graphQLQuery = graphql`
-    query {
-      allSitePage(
-        filter: { context: { lang: { eq: "en-us" }, uid: { ne: "" } } }
-      ) {
-        edges {
-          node {
-            context {
-              uid
-              alternateLanguages {
-                uid
-                lang
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-  // const query = useStaticQuery(graphQLQuery);
+  const context = usePageContext();
 
-  return (
-    <StaticQuery
-      query={graphQLQuery}
-      render={withPreview(
-        query => (
-          <LanguageRedirect
-            pages={query.allSitePage.edges.map(e => e.node.context)}
-          />
-        ),
-        graphQLQuery
-      )}
-    />
-  );
-};
-
-export const LanguageRedirect: FC<{
-  pages: { alternateLanguages: { uid: string; lang: string }[]; uid: string }[];
-}> = memo(({ pages }) => {
-  const language = useLanguage();
   useEffect(() => {
     const shouldSwitchToLang = Language.detect();
     if (!shouldSwitchToLang || language === shouldSwitchToLang) {
@@ -72,13 +21,14 @@ export const LanguageRedirect: FC<{
       )?.uid,
     }));
 
-    const pageToSwitchTo = pagesForMyLanguage.find(p =>
-      document.location.href.includes(p.uid)
-    );
+    const pageToSwitchTo = pagesForMyLanguage.find(p => context.uid === p.uid);
 
     if (pageToSwitchTo?.alternateUid) {
-      location.href = `/${shouldSwitchToLang}/${pageToSwitchTo.alternateUid}`;
+      location.href = Language.getLanguageLink(
+        shouldSwitchToLang,
+        pageToSwitchTo.alternateUid
+      );
     }
-  }, [language, pages]);
+  }, [language, pages, context.uid]);
   return null;
-});
+};

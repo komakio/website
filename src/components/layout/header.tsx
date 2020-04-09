@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { colors } from '@utils/colors';
 import { Container } from 'styled-bootstrap-grid';
 import { HeaderLink } from './header-link';
-import { useLanguage } from '@components/language';
 import { Language } from '@utils/language';
+import { useTopMenus, useLanguage } from '@components/page-context';
 
 export const headerHeight = 65;
 
@@ -52,11 +52,9 @@ const Flex = styled.div`
   flex: 1;
 `;
 
-interface HeaderProps {
-  topMenus: any[];
-}
-export const Header: FC<HeaderProps> = ({ topMenus }) => {
+export const Header: FC = () => {
   const language = useLanguage();
+  const topMenus = useTopMenus();
   return (
     <StyledHeader>
       <Container>
@@ -67,7 +65,7 @@ export const Header: FC<HeaderProps> = ({ topMenus }) => {
         </h1>
         <Flex />
         <nav style={{ height: 65, paddingTop: 26 }}>
-          {topMenus?.map((element: any) => {
+          {topMenus?.map(element => {
             return (
               <HeaderLink
                 key={element.menu_link?._meta.uid}

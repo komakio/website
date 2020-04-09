@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { graphql } from 'gatsby';
 import { Layout } from '@components/layout/layout';
-import { Container } from 'styled-bootstrap-grid';
 import { SEO } from '@components/seo';
 import { PageElement } from './element';
+import { PageContext } from '@components/page-context';
 
-const Page = (props: any) => {
+const Page = memo((props: any) => {
   const doc = props.data?.prismic?.allPages?.edges?.slice(0, 1)?.pop();
   if (!doc?.node) {
     return null;
   }
 
   const topMenus = props.data.prismic?.allTopmenus?.edges[0].node.elements;
+  const allPages = props.data.allSitePage.edges.map(e => e.node.context);
 
   const { meta_title, meta_description, social_image, body, _meta } = doc.node;
 
   return (
-    <Layout lang={_meta.lang} topMenus={topMenus}>
+    <Layout
+      context={{
+        context: _meta,
+        topMenus,
+        allPages,
+      }}
+    >
       <SEO
         lang={_meta.lang}
         title={meta_title}
@@ -34,12 +41,27 @@ const Page = (props: any) => {
       ))}
     </Layout>
   );
-};
+});
 
 export default Page;
 
 export const query = graphql`
   query PageQuery($uid: String, $lang: String) {
+    allSitePage(
+      filter: { context: { lang: { eq: "en-us" }, uid: { ne: "" } } }
+    ) {
+      edges {
+        node {
+          context {
+            uid
+            alternateLanguages {
+              uid
+              lang
+            }
+          }
+        }
+      }
+    }
     prismic {
       allTopmenus(lang: $lang) {
         edges {
@@ -65,6 +87,7 @@ export const query = graphql`
             meta_description
             social_image
             _meta {
+              uid
               lang
               alternateLanguages {
                 lang
