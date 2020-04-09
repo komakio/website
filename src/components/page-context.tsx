@@ -1,8 +1,10 @@
 import { createContext, useContext } from 'react';
 
-interface MetaLink {
+export interface MetaLink {
   uid: string;
   lang: string;
+  _linkType?: 'Link.web' | 'Link.document';
+  url?: string;
   alternateLanguages?: {
     lang: string;
     uid: string;
@@ -11,19 +13,19 @@ interface MetaLink {
 
 interface PContext extends MetaLink {
   title: string;
-  description: string;
-  image: {
+  description?: string;
+  image?: {
     url: string;
   };
 }
 
 export interface PageContext {
   context: PContext;
-  topMenus: {
+  topMenus?: {
     menu_link: { _meta: MetaLink };
     title: string;
   }[];
-  allPages: MetaLink[];
+  allPages?: MetaLink[];
 }
 
 export const PageContextProvider = createContext<PageContext>(null);

@@ -6,10 +6,13 @@ import { Container } from 'styled-bootstrap-grid';
 import { Button } from '@components/button';
 
 const NotFoundPage = () => {
-  const lang = 'en-us';
   return (
-    <Layout context={{ context: { uid: 'not-found', lang } }}>
-      <SEO title="404: Not found" lang={lang} />
+    <Layout
+      context={{
+        context: { title: 'Not found', uid: 'not-found', lang: 'en-us' },
+      }}
+    >
+      <SEO />
       <Container>
         <h1>NOT FOUND</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>

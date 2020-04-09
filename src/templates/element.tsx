@@ -6,6 +6,8 @@ import { FullWidthBackground } from '@components/elements/full-width-background'
 import { IconBoxes } from '@components/elements/icon-boxes';
 import { TwoColumnsRichText } from '@components/elements/two-colums-rich-text';
 import { ContactForm } from '@components/elements/contact-form';
+import { Image } from '@components/image';
+import { ImageElement } from '@components/elements/image-element';
 
 interface PageElementProps {
   item: any;
@@ -72,6 +74,16 @@ export const PageElement: FC<PageElementProps> = memo(({ item, index }) => {
         failedLabel={item.primary.contact_form_failed_label}
         reason={item.primary.contact_form_reason}
         hasBody={item.primary.contact_form_body}
+      />
+    );
+  }
+
+  if (item.type === 'image') {
+    return (
+      <ImageElement
+        image={item.primary.image}
+        imageLink={item.primary.image_link}
+        imageSharp={item.primary.image_sharp}
       />
     );
   }

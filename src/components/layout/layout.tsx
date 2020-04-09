@@ -8,6 +8,7 @@ import { RecaptchaInit } from '@components/recaptcha';
 import styled from 'styled-components';
 import { LanguageChooser } from '@components/language';
 import { PageContext, PageContextProvider } from '@components/page-context';
+import { SEO } from '@components/seo';
 
 const Footer = styled.footer`
   position: fixed;
@@ -23,6 +24,7 @@ interface LayoutProps {
 export const Layout: FC<LayoutProps> = ({ children, context }) => {
   return (
     <PageContextProvider.Provider value={context}>
+      <SEO />
       <Reset />
       <GlobalStyles />
       <RecaptchaInit />

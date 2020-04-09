@@ -1,9 +1,7 @@
 import React, { memo } from 'react';
 import { graphql } from 'gatsby';
 import { Layout } from '@components/layout/layout';
-import { SEO } from '@components/seo';
 import { PageElement } from './element';
-import { PageContext } from '@components/page-context';
 
 const Page = memo((props: any) => {
   const doc = props.data?.prismic?.allPages?.edges?.slice(0, 1)?.pop();
@@ -29,14 +27,6 @@ const Page = memo((props: any) => {
         allPages,
       }}
     >
-      <SEO
-        lang={_meta.lang}
-        title={meta_title}
-        description={meta_description}
-        alternateLanguages={_meta.alternateLanguages}
-        image={social_image}
-      />
-
       {body?.map((item: any, index: number) => (
         <PageElement
           key={`${item.__typename}${index}`}
@@ -109,9 +99,18 @@ export const query = graphql`
               }
               ... on PRISMIC_PageBodyImage {
                 type
-                label
                 primary {
                   image
+                  image_link {
+                    _linkType
+                    ... on PRISMIC_Page {
+                      prismic_display_title
+                      meta_title
+                    }
+                    ... on PRISMIC__ExternalLink {
+                      url
+                    }
+                  }
                 }
               }
               ... on PRISMIC_PageBodyPage_title {
