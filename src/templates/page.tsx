@@ -9,9 +9,20 @@ const Page = memo((props: any) => {
     return null;
   }
 
-  const topMenus = props.data.prismic?.allTopmenus?.edges[0].node.elements;
-  const allPages = props.data.allSitePage.edges.map(e => e.node.context);
+  const topMenusNode = props.data.prismic?.allTopmenus?.edges[0].node;
+  const topMenus = topMenusNode.elements;
+  topMenusNode.body.forEach((subitemsConfig: any) => {
+    const topMenu = topMenus.find(
+      c =>
+        c.multiitem_reference_id ===
+        subitemsConfig.primary.multiitem_reference_id
+    );
+    if (topMenu) {
+      topMenu.children = subitemsConfig.fields;
+    }
+  });
 
+  const allPages = props.data.allSitePage.edges.map(e => e.node.context);
   const { meta_title, meta_description, social_image, body, _meta } = doc.node;
 
   return (
@@ -71,6 +82,26 @@ export const query = graphql`
                 }
               }
               title
+              multiitem_reference_id
+            }
+            body {
+              ... on PRISMIC_TopmenuBodyMultiitem_dropdown {
+                type
+                primary {
+                  multiitem_reference_id
+                }
+                fields {
+                  dropdown_item_link {
+                    ... on PRISMIC_Page {
+                      _meta {
+                        uid
+                        lang
+                      }
+                    }
+                  }
+                  dropdown_item_title
+                }
+              }
             }
           }
         }

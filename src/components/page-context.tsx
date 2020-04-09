@@ -24,6 +24,11 @@ export interface PageContext {
   topMenus?: {
     menu_link: { _meta: MetaLink };
     title: string;
+    button: boolean;
+    children: {
+      dropdown_item_title: string;
+      dropdown_item_link: { _meta: MetaLink };
+    }[];
   }[];
   allPages?: MetaLink[];
 }

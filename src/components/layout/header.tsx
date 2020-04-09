@@ -46,6 +46,12 @@ const StyledHeader = styled.header`
     color: white;
     text-decoration: none;
   }
+
+  nav {
+    height: 65;
+    flex-direction: row;
+    display: flex;
+  }
 `;
 
 const Flex = styled.div`
@@ -64,16 +70,15 @@ export const Header: FC = () => {
           </Link>
         </h1>
         <Flex />
-        <nav style={{ height: 65, paddingTop: 26 }}>
+        <nav>
           {topMenus?.map(element => {
             return (
               <HeaderLink
-                key={element.menu_link?._meta.uid}
-                link={Language.getLanguageLink(
-                  language,
-                  element.menu_link._meta.uid
-                )}
-                title={element.title}
+                key={
+                  element.menu_link?._meta.uid ||
+                  JSON.stringify(element.children)
+                }
+                element={element}
               />
             );
           })}
