@@ -1,6 +1,7 @@
 import React, { memo, FC } from 'react';
 import Helmet from 'react-helmet';
 import { graphql, StaticQuery } from 'gatsby';
+import { withPreview } from 'gatsby-source-prismic-graphql';
 
 interface SEOProps {
   description?: string;
@@ -34,7 +35,7 @@ export const SEO: FC<SEOProps> = memo(
     return (
       <StaticQuery
         query={graphQLQuery}
-        render={({ site }) => {
+        render={withPreview(({ site }) => {
           const metaDescription =
             description || site?.siteMetadata?.description;
 
@@ -98,7 +99,7 @@ export const SEO: FC<SEOProps> = memo(
               ].concat(meta)}
             />
           );
-        }}
+        }, graphQLQuery)}
       />
     );
   }

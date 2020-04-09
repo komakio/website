@@ -6,9 +6,7 @@ import { SEO } from '@components/seo';
 import { PageElement } from './element';
 
 const Page = (props: any) => {
-  console.log('yooo');
   const doc = props.data?.prismic?.allPages?.edges?.slice(0, 1)?.pop();
-  console.log(doc);
   if (!doc?.node) {
     return null;
   }
@@ -39,29 +37,6 @@ const Page = (props: any) => {
 };
 
 export default Page;
-// query MyQuery {
-//   prismic {
-//     allTopmenus {
-//       edges {
-//         node {
-//           elements {
-//             menu_link {
-//               ... on PRISMIC_Page {
-//                 _meta {
-//                   alternateLanguages {
-//                     lang
-//                     uid
-//                   }
-//                 }
-//                 title
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
 
 export const query = graphql`
   query PageQuery($uid: String, $lang: String) {

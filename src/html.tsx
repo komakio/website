@@ -5,20 +5,7 @@ export default function HTML(props) {
   const isDev =
     props.headComponents?.find(c => c.key === 'environment')?.props?.content ===
     'environment=development';
-  console.log(isDev);
-  console.log('---------------------');
-  console.log('---------------------');
-  console.log('---------------------');
-  console.log('---------------------');
-  console.log('---------------------');
-  console.log('---------------------');
-  console.log('---------------------');
-  console.log('---------------------');
-  console.log('---------------------');
-  console.log('---------------------');
-  console.log('---------------------');
-  console.log('---------------------');
-  console.log('---------------------');
+
   return (
     <html {...props.htmlAttributes}>
       <head>

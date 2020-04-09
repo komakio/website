@@ -1,4 +1,4 @@
-import { Link, graphql, StaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { colors } from '@utils/colors';
@@ -57,72 +57,30 @@ interface HeaderProps {
 }
 export const Header: FC<HeaderProps> = ({ topMenus }) => {
   const language = useLanguage();
-  const graphQLQuery = graphql`
-    query {
-      allSitePage(
-        filter: { context: { lang: { eq: "en-us" }, uid: { ne: "" } } }
-      ) {
-        edges {
-          node {
-            context {
-              lang
-              uid
-              alternateLanguages {
-                uid
-                lang
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-  // const query = useStaticQuery(graphQLQuery);
-
   return (
-    <StaticQuery
-      query={graphQLQuery}
-      render={query => {
-        const pages = query.allSitePage.edges.map(e => e.node.context);
-        return (
-          <StyledHeader>
-            <Container>
-              <h1>
-                <Link
-                  to={language === Language.defaultLang ? '/' : `/${language}`}
-                >
-                  Komak
-                </Link>
-              </h1>
-              <Flex />
-              <nav style={{ height: 65, paddingTop: 26 }}>
-                {topMenus?.map((element: any) => {
-                  // let link = element.menu_link?._meta.uid;
-                  // if (language !== Language.defaultLang) {
-                  //   const page = pages.find(p => `/${p.uid}` === element.link);
-                  //   const languagePage = page?.alternateLanguages.find(
-                  //     c => c.lang === language
-                  //   );
-                  //   if (languagePage?.uid) {
-                  //     link = `/${language}/${languagePage?.uid}`;
-                  //   }
-                  // }
-                  return (
-                    <HeaderLink
-                      key={element.menu_link?._meta.uid}
-                      link={Language.getLanguageLink(
-                        language,
-                        element.menu_link?._meta.uid
-                      )}
-                      title={element.title}
-                    />
-                  );
-                })}
-              </nav>
-            </Container>
-          </StyledHeader>
-        );
-      }}
-    />
+    <StyledHeader>
+      <Container>
+        <h1>
+          <Link to={language === Language.defaultLang ? '/' : `/${language}`}>
+            Komak
+          </Link>
+        </h1>
+        <Flex />
+        <nav style={{ height: 65, paddingTop: 26 }}>
+          {topMenus?.map((element: any) => {
+            return (
+              <HeaderLink
+                key={element.menu_link?._meta.uid}
+                link={Language.getLanguageLink(
+                  language,
+                  element.menu_link._meta.uid
+                )}
+                title={element.title}
+              />
+            );
+          })}
+        </nav>
+      </Container>
+    </StyledHeader>
   );
 };
