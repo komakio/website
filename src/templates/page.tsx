@@ -11,7 +11,7 @@ const Page = memo((props: any) => {
 
   const topMenusNode = props.data.prismic?.allTopmenus?.edges[0].node;
   const topMenus = topMenusNode.elements;
-  topMenusNode.body.forEach((subitemsConfig: any) => {
+  topMenusNode.body?.forEach((subitemsConfig: any) => {
     const topMenu = topMenus.find(
       c =>
         c.multiitem_reference_id ===

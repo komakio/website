@@ -1,11 +1,16 @@
 import { Link } from 'gatsby';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '@utils/colors';
-import { Container } from 'styled-bootstrap-grid';
+import { Container, media } from 'styled-bootstrap-grid';
 import { HeaderLink } from './header-link';
 import { Language } from '@utils/language';
 import { useTopMenus, useLanguage } from '@components/page-context';
+import { Button } from '@components/button';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import FeatherIcon from 'feather-icons-react';
+import { MobileMenu } from './mobile-menu';
 
 export const headerHeight = 65;
 
@@ -50,8 +55,21 @@ const StyledHeader = styled.header`
   nav {
     height: 65;
     flex-direction: row;
-    display: flex;
+    display: none;
+
+    ${media.md`
+      display: flex;
+    `}
   }
+`;
+
+export const MenuIcon = styled(Button)`
+  height: 45px;
+  margin-top: 10px;
+
+  ${media.md`
+      display: none;
+    `}
 `;
 
 const Flex = styled.div`
@@ -61,8 +79,14 @@ const Flex = styled.div`
 export const Header: FC = () => {
   const language = useLanguage();
   const topMenus = useTopMenus();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(true);
+
   return (
     <StyledHeader>
+      <MobileMenu
+        open={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
       <Container>
         <h1>
           <Link to={language === Language.defaultLang ? '/' : `/${language}`}>
@@ -70,6 +94,13 @@ export const Header: FC = () => {
           </Link>
         </h1>
         <Flex />
+        <MenuIcon
+          theme="white"
+          size="medium"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <FeatherIcon icon="menu" size={20} color={colors.green200} />
+        </MenuIcon>
         <nav>
           {topMenus?.map(element => {
             return (

@@ -63,13 +63,15 @@ interface ButtonProps {
   type?: string;
   theme?: 'primary' | 'white';
   size?: 'large' | 'medium';
+  className?: string;
 }
 
 export const Button: FC<ButtonProps> = memo(
-  ({ children, href, onClick, type, theme, size }) => {
+  ({ children, href, onClick, type, theme, size, className }) => {
     if (href) {
       return (
         <StyledButton
+          className={className}
           href={href}
           theme={theme}
           size={size}
@@ -88,7 +90,13 @@ export const Button: FC<ButtonProps> = memo(
     }
 
     return (
-      <StyledButton type={type} size={size} theme={theme} onClick={onClick}>
+      <StyledButton
+        className={className}
+        type={type}
+        size={size}
+        theme={theme}
+        onClick={onClick}
+      >
         {children}
       </StyledButton>
     );
