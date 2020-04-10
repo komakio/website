@@ -22,6 +22,7 @@ export const ImageElement: FC<ImageProps> = memo(
     // ) : (
     //   <img src={image.url} />
     // );
+    console.log(image, imageSharp);
     const imageTag = <img src={image.url} />;
 
     return (
