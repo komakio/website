@@ -1,0 +1,39 @@
+kind: pipeline
+name: Build&Push image
+
+trigger:
+  branch:
+  - master
+  event:
+  - push
+
+steps:
+- name: docker  
+  image: plugins/docker
+  environment:
+    PRISMIC_API_KEY:
+      from_secret: PRISMIC_API_KEY
+  settings:
+    username:
+      from_secret: DOCKER_USERNAME
+    password:
+      from_secret: DOCKER_PASSWORD
+    repo: komakio/website
+    tags: ${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}
+    build_args_from_env:
+    - PRISMIC_API_KEY
+
+- name: git deploy
+  image: bitnami/git
+  commands:
+  - git clone "https://$(echo $githubUsername):$(echo $githubPassword)@github.com/wikibusiness/komak-k8s.git"
+  - cd komak-k8s
+  - rm -f src/website-version.yaml
+  - "echo 'imageTag: ${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}' > src/website-version.yaml"
+  - "git add . && git commit -a -m 'Updated website to tag ${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}' && git push"
+
+  environment:
+    githubUsername:
+      from_secret: GITHUB_USERNAME
+    githubPassword:
+      from_secret: GITHUB_PASSWORD

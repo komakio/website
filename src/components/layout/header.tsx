@@ -79,7 +79,7 @@ const Flex = styled.div`
 export const Header: FC = () => {
   const language = useLanguage();
   const topMenus = useTopMenus();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
   return (
     <StyledHeader>
