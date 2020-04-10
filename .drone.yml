@@ -7,6 +7,7 @@ trigger:
   - master
   event:
   - push
+  - custom
 
 steps:
 - name: docker  
@@ -40,6 +41,6 @@ steps:
       from_secret: GITHUB_PASSWORD
 ---
 kind: signature
-hmac: 64f978994dc9e93dcbeb49ed65a1570d7c2bf14a5d44b4f3b55e466de13f09b7
+hmac: 93357c751c67cab9928100d589d3056002ba31ae9bb169bfb87ce66ca5d0404c
 
 ...
