@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, CSSProperties } from 'styled-components';
 import { colors } from '@utils/colors';
 import React, { memo, FC } from 'react';
 import { navigate } from 'gatsby';
@@ -64,10 +64,11 @@ interface ButtonProps {
   theme?: 'primary' | 'white';
   size?: 'large' | 'medium';
   className?: string;
+  style?: CSSProperties;
 }
 
 export const Button: FC<ButtonProps> = memo(
-  ({ children, href, onClick, type, theme, size, className }) => {
+  ({ children, href, onClick, type, theme, size, className, style }) => {
     if (href) {
       return (
         <StyledButton
@@ -75,6 +76,7 @@ export const Button: FC<ButtonProps> = memo(
           href={href}
           theme={theme}
           size={size}
+          style={style}
           onClick={event => {
             if (event.ctrlKey || event.metaKey) {
               return;

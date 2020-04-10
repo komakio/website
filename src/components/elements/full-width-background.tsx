@@ -48,7 +48,7 @@ const ContentBlock = styled.div`
 
   @media only screen and (max-width: 800px) {
     padding: 0 10%;
-    padding-top: 150px;
+    padding-top: 120px;
   }
 
   h1 {

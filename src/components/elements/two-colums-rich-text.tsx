@@ -1,12 +1,11 @@
 import React, { memo, FC } from 'react';
-import styled, { css } from 'styled-components';
-import { Container, Row, Col } from 'styled-bootstrap-grid';
+import styled from 'styled-components';
+import { Container, Row, Col, media } from 'styled-bootstrap-grid';
 import { Button } from '@components/button';
 import { Language } from '@utils/language';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { RichText as RichTextPrismic } from 'prismic-reactjs';
-import { Link } from 'gatsby';
 import { useLanguage } from '@components/page-context';
 
 interface TwoColumnsRichTextProps {
@@ -24,6 +23,10 @@ interface TwoColumnsRichTextProps {
 const StyledContainer = styled.section`
   background: white;
   padding: 120px 0;
+
+  ${media.smaller`
+    padding: 60px 0;
+  `}
 `;
 
 export const TwoColumnsRichText: FC<TwoColumnsRichTextProps> = memo(
@@ -44,6 +47,7 @@ export const TwoColumnsRichText: FC<TwoColumnsRichTextProps> = memo(
                         language,
                         item.ctaLink._meta.uid
                       )}
+                      style={{ marginBottom: 20 }}
                     >
                       {item.ctaLabel}
                     </Button>
