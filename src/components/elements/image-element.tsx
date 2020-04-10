@@ -17,11 +17,12 @@ const StyledImageContainer = styled.div`
 
 export const ImageElement: FC<ImageProps> = memo(
   ({ image, imageLink, imageSharp }) => {
-    const imageTag = imageSharp ? (
-      <Img fluid={imageSharp} />
-    ) : (
-      <img src={image.url} />
-    );
+    // const imageTag = imageSharp ? (
+    //   <Img fluid={imageSharp} />
+    // ) : (
+    //   <img src={image.url} />
+    // );
+    const imageTag = <img src={image.url} />;
 
     return (
       <Container>
