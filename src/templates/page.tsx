@@ -196,6 +196,28 @@ export const query = graphql`
                   contact_form_failed_label
                 }
               }
+              ... on PRISMIC_PageBodyRequesthelp {
+                type
+                primary {
+                  request_form_email
+                  request_form_explanations
+                  request_form_firstname
+                  request_form_gdpr
+                  request_form_lastname
+                  request_form_location
+                  request_form_phone
+                  request_form_privacy
+                  request_form_submit
+                  request_form_terms
+                  request_form_terms_privacy_title
+                  request_form_title
+                  request_form_country_choose
+                  request_form_loading
+                  request_form_no_results
+                  request_form_success
+                  request_form_error
+                }
+              }
               ... on PRISMIC_PageBodyFull_width_background {
                 type
                 label

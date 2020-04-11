@@ -11,6 +11,7 @@ interface InputProps {
   onChangeText?: (text: string) => void;
   error?: FieldError;
   textarea?: boolean;
+  autoComplete?: string;
 }
 
 const InputComponent = styled.input<{ hasError: boolean; textarea: boolean }>`
@@ -30,7 +31,15 @@ const InputComponent = styled.input<{ hasError: boolean; textarea: boolean }>`
 `;
 
 export const Input: FC<InputProps> = memo(
-  ({ register, onChangeText, name, error, textarea, ...props }) => {
+  ({
+    register,
+    onChangeText,
+    name,
+    error,
+    textarea,
+    autoComplete,
+    ...props
+  }) => {
     return (
       <InputComponent
         as={textarea ? 'textarea' : undefined}
@@ -38,6 +47,7 @@ export const Input: FC<InputProps> = memo(
         onChange={event => onChangeText?.(event.target.value)}
         hasError={!!error}
         textarea={textarea}
+        autoComplete={autoComplete}
         {...props}
         ref={register}
       />

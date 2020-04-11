@@ -1,5 +1,5 @@
 import React, { memo, FC } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { colors } from '@utils/colors';
 
 interface CheckboxViewProps {
@@ -7,6 +7,7 @@ interface CheckboxViewProps {
   checked?: boolean;
   name: string;
   label: string | JSX.Element;
+  hasError?: boolean;
 }
 
 const Container = styled.div`
@@ -21,7 +22,7 @@ const Container = styled.div`
   }
 `;
 
-const CheckboxContainer = styled.div<{ checked: boolean }>`
+const CheckboxContainer = styled.div<{ checked: boolean; hasError: boolean }>`
   display: inline-block;
   vertical-align: middle;
   padding-bottom: 5px;
@@ -54,6 +55,13 @@ const CheckboxContainer = styled.div<{ checked: boolean }>`
     transition: all 150ms;
     cursor: pointer;
 
+    ${({ hasError }) =>
+      hasError &&
+      css`
+        border: 1px solid ${colors.red200} !important;
+        box-shadow: none !important;
+      `}
+
     svg {
       fill: none;
       stroke: white;
@@ -63,10 +71,10 @@ const CheckboxContainer = styled.div<{ checked: boolean }>`
 `;
 
 export const CheckboxView: FC<CheckboxViewProps> = memo(
-  ({ checked, onChange, label, name }) => {
+  ({ checked, onChange, label, name, hasError }) => {
     return (
       <Container>
-        <CheckboxContainer checked={checked}>
+        <CheckboxContainer checked={checked} hasError={hasError}>
           <input
             type="checkbox"
             name={name}

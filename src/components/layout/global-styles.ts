@@ -10,7 +10,6 @@ export const GlobalStyles = createGlobalStyle`
     }
     .grecaptcha-badge { visibility: hidden; }
 
-
     .text-center {
         text-align: center;
     }
@@ -72,5 +71,9 @@ export const GlobalStyles = createGlobalStyle`
             margin-bottom: 20px;
         line-height: 1.5;
         }
+    }
+
+    label p {
+        margin-bottom: 0;
     }
 `;

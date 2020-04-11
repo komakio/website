@@ -3,6 +3,8 @@ export class AccessToken {
     localStorage.setItem('accessToken', accessToken);
   }
   public static get() {
-    return localStorage.getItem('accessToken');
+    return (
+      typeof localStorage !== 'undefined' && localStorage.getItem('accessToken')
+    );
   }
 }

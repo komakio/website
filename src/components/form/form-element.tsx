@@ -34,7 +34,7 @@ export const FormElement: FC<FormElementProps> = memo(
         if (!child) {
           return null;
         }
-        return React.cloneElement(child, { ...child.props, error });
+        return React.cloneElement(child, { error, ...child.props });
       });
     }, [children, error]);
 

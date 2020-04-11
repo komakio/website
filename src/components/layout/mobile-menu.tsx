@@ -95,7 +95,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ open, onClose }) => {
             return <Link to={link}>{element.title}</Link>;
           };
 
-          return <NavItem>{renderElement()}</NavItem>;
+          return <NavItem key={element.title}>{renderElement()}</NavItem>;
         })}
       </StyledMenu>
     </>

@@ -8,6 +8,7 @@ import { TwoColumnsRichText } from '@components/elements/two-colums-rich-text';
 import { ContactForm } from '@components/elements/contact-form';
 import { Image } from '@components/image';
 import { ImageElement } from '@components/elements/image-element';
+import { RequestHelp } from '@components/elements/request-help';
 
 interface PageElementProps {
   item: any;
@@ -85,6 +86,30 @@ export const PageElement: FC<PageElementProps> = memo(({ item, index }) => {
         image={item.primary.image}
         imageLink={item.primary.image_link}
         imageSharp={item.primary.image_sharp}
+      />
+    );
+  }
+
+  if (item.type === 'requesthelp') {
+    return (
+      <RequestHelp
+        email={item.primary.request_form_email}
+        explanations={item.primary.request_form_explanations}
+        firstname={item.primary.request_form_firstname}
+        gdpr={item.primary.request_form_gdpr}
+        lastname={item.primary.request_form_lastname}
+        location={item.primary.request_form_location}
+        phone={item.primary.request_form_phone}
+        privacy={item.primary.request_form_privacy}
+        submit={item.primary.request_form_submit}
+        terms={item.primary.request_form_terms}
+        termsPrivacyTitle={item.primary.request_form_terms_privacy_title}
+        title={item.primary.request_form_title}
+        countryChoose={item.primary.request_form_country_choose}
+        loading={item.primary.request_form_loading}
+        noResults={item.primary.request_form_no_results}
+        success={item.primary.request_form_success}
+        error={item.primary.request_form_error}
       />
     );
   }

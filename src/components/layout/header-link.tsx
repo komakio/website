@@ -107,8 +107,6 @@ export const HeaderLink: FC<HeaderLinkProps> = ({ element }) => {
   }
 
   const renderElem = () => {
-    console.log(element.children);
-
     if (element.button) {
       return (
         <Button href={link} theme="white" size="medium" style={linkStyles}>
