@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { LanguageChooser } from '@components/language';
 import { PageContext, PageContextProvider } from '@components/page-context';
 import { SEO } from '@components/seo';
+import '../../sentry';
 
 const Footer = styled.footer`
   position: fixed;
