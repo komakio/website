@@ -1,4 +1,4 @@
-import { axiosInstance } from './base';
+import { axiosInstance, getHeaders } from './base';
 
 export interface GeolocationResult {
   label: string;
@@ -9,10 +9,14 @@ export interface GeolocationResult {
 
 export class LocationApi {
   public static async autocomplete(text: string): Promise<GeolocationResult[]> {
-    const res = await axiosInstance.post(`/v1/geocoder/autocomplete`, {
-      text,
-      size: 5,
-    });
+    const res = await axiosInstance.post(
+      `/v1/geocoder/autocomplete`,
+      {
+        text,
+        size: 5,
+      },
+      { headers: getHeaders() }
+    );
     return res.data.results;
   }
 }

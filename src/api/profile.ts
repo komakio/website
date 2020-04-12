@@ -1,4 +1,4 @@
-import { axiosInstance } from './base';
+import { axiosInstance, getHeaders } from './base';
 
 interface Location {
   type: 'Point';
@@ -29,7 +29,9 @@ export interface ProfileRequestCreation {
 
 export class ProfilesApi {
   public static async createRequest(profile: ProfileRequestCreation) {
-    const res = await axiosInstance.post(`/v1/requests/webform`, profile);
+    const res = await axiosInstance.post(`/v1/requests/webform`, profile, {
+      headers: getHeaders(),
+    });
     return res.data;
   }
 }
