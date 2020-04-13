@@ -1,10 +1,15 @@
 export class AccessToken {
+  private static token: string;
+
   public static set(accessToken: string) {
-    localStorage.setItem('accessToken', accessToken);
+    this.token = accessToken;
+    localStorage?.setItem('accessToken', accessToken);
   }
   public static get() {
     return (
-      typeof localStorage !== 'undefined' && localStorage.getItem('accessToken')
+      this.token ||
+      (typeof localStorage !== 'undefined' &&
+        localStorage.getItem('accessToken'))
     );
   }
 }
