@@ -1,8 +1,8 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, memo } from 'react';
 import { Language } from '@utils/language';
 import { useLanguage, useAllPages, usePageContext } from './page-context';
 
-export const LanguageChooser: FC = () => {
+export const LanguageChooser: FC = memo(() => {
   const pages = useAllPages();
   const language = useLanguage();
   const context = usePageContext();
@@ -31,4 +31,4 @@ export const LanguageChooser: FC = () => {
     }
   }, [language, pages, context.uid]);
   return null;
-};
+});

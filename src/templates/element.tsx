@@ -1,14 +1,13 @@
 import React, { memo, FC } from 'react';
 import { Container } from 'styled-bootstrap-grid';
-import { RichText } from '@components/elements/rich-text';
 import { PageTitle } from '@components/elements/page-title';
 import { FullWidthBackground } from '@components/elements/full-width-background';
 import { IconBoxes } from '@components/elements/icon-boxes';
 import { TwoColumnsRichText } from '@components/elements/two-colums-rich-text';
 import { ContactForm } from '@components/elements/contact-form';
-import { Image } from '@components/image';
 import { ImageElement } from '@components/elements/image-element';
 import { RequestHelp } from '@components/elements/request-help';
+import { RichTextElement } from '@components/elements/rich-text';
 
 interface PageElementProps {
   item: any;
@@ -20,10 +19,10 @@ export const PageElement: FC<PageElementProps> = memo(({ item, index }) => {
     if (index === 0) {
       return <PageTitle title={item.primary.heading[0].text} />;
     }
-    return <RichText text={item.primary.heading} />;
+    return <RichTextElement text={item.primary.heading} />;
   }
   if (item.type === 'text') {
-    return <RichText text={item.primary.text} />;
+    return <RichTextElement text={item.primary.text} />;
   }
 
   if (item.type === 'full_width_background') {

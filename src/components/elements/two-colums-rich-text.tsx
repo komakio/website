@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import { Container, Row, Col, media } from 'styled-bootstrap-grid';
 import { Button } from '@components/button';
 import { Language } from '@utils/language';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import { RichText as RichTextPrismic } from 'prismic-reactjs';
 import { useLanguage } from '@components/page-context';
+import { RichText } from '@components/rich-text';
 
 interface TwoColumnsRichTextProps {
   items: {
@@ -40,7 +38,7 @@ export const TwoColumnsRichText: FC<TwoColumnsRichTextProps> = memo(
             {items.map(item => {
               return (
                 <Col key={JSON.stringify(item.richText)} xs={12} lg={6}>
-                  {RichTextPrismic.render(item.richText)}
+                  <RichText content={item.richText} />
                   {item.ctaLabel && (
                     <Button
                       href={Language.getLanguageLink(

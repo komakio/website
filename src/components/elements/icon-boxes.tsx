@@ -6,11 +6,9 @@ import { Language } from '@utils/language';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import FeatherIcon from 'feather-icons-react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import { RichText as RichTextPrismic } from 'prismic-reactjs';
 import { Link } from 'gatsby';
 import { useLanguage } from '@components/page-context';
+import { RichText } from '../rich-text';
 
 interface IconBoxesProps {
   title: any;
@@ -56,7 +54,9 @@ export const IconBoxes: FC<IconBoxesProps> = memo(({ title, items }) => {
   return (
     <StyledContainer>
       <Container>
-        <div className="text-center">{RichTextPrismic.render(title)}</div>
+        <div className="text-center">
+          <RichText content={title} />
+        </div>
         <Row>
           {items.map(item => {
             return (

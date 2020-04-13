@@ -13,10 +13,8 @@ import { Container, Row, Col } from 'styled-bootstrap-grid';
 import styled from 'styled-components';
 import { Button } from '@components/button';
 import { Input } from '@components/form/input';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import { RichText as RichTextPrismic } from 'prismic-reactjs';
 import { ProfilesApi, ProfileRequestCreation } from '@api/profile';
+import { RichText } from '@components/rich-text';
 
 type FormData = {
   firstName: string;
@@ -254,14 +252,14 @@ export const RequestHelp: FC<RequestHelpProps> = ({
                     name="terms"
                     control={control}
                     isRequired={true}
-                    label={RichTextPrismic.render(terms)}
+                    label={<RichText content={terms} />}
                     error={errors.terms}
                   />
                   <Checkbox
                     name="privacy"
                     control={control}
                     isRequired={true}
-                    label={RichTextPrismic.render(privacy)}
+                    label={<RichText content={privacy} />}
                     error={errors.privacy}
                   />
                   <Checkbox
@@ -279,7 +277,7 @@ export const RequestHelp: FC<RequestHelpProps> = ({
               </Col>
             )}
             <Col col={12} md={6}>
-              {RichTextPrismic.render(explanations)}
+              <RichText content={explanations} />
             </Col>
           </Row>
         </Container>
