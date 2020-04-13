@@ -21,6 +21,13 @@ export class Language {
     if (localStorageValue && !path && localStorageValue !== path) {
       return localStorageValue;
     }
+    if (
+      localStorageValue &&
+      path &&
+      localStorageValue === Language.defaultLang
+    ) {
+      return localStorageValue;
+    }
     if (!localStorageValue && !path) {
       const bestLanguage = this.findBestAvailableLanguage();
       if (bestLanguage.split('-')[0] !== 'en') {

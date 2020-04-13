@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Container } from 'styled-bootstrap-grid';
 
 const StyledPageTitle = styled.h1`
-  margin-top: 20px;
+  padding-top: 20px;
   font-size: 40px;
 `;
 

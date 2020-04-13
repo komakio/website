@@ -2,13 +2,15 @@ import { createGlobalStyle } from 'styled-components';
 import { headerHeight } from './header';
 import { colors } from '@utils/colors';
 import { media } from 'styled-bootstrap-grid';
+import { footerHeight } from './footer';
 
 export const GlobalStyles = createGlobalStyle`
     body {
         font-family: 'Sen', sans-serif;
         padding-top: ${headerHeight}px;
     }
-    .grecaptcha-badge { visibility: hidden; }
+.grecaptcha-badge { visibility: hidden; bottom: ${footerHeight +
+  5}px !important; }
 
     .text-center {
         text-align: center;

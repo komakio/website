@@ -19,4 +19,9 @@ export class Environment {
     Environment.env === 'production'
       ? 'https://api.komak.io'
       : 'https://api-staging.komak.io';
+
+  public static languages = [
+    { label: 'English', flagCode: 'gb', languageCode: 'en-us' },
+    { label: 'Français', flagCode: 'fr', languageCode: 'fr' },
+  ];
 }
