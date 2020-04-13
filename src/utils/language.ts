@@ -75,11 +75,11 @@ export class Language {
   }
 
   public static getFromLocalStorage() {
-    return window.localStorage.getItem(this.localStorageKey);
+    return window.localStorage?.getItem(this.localStorageKey);
   }
 
   public static setToLocalStorage(lang: string) {
-    return window.localStorage.setItem(this.localStorageKey, lang);
+    return window.localStorage?.setItem(this.localStorageKey, lang);
   }
 
   public static getFromPath() {
