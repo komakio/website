@@ -1,4 +1,4 @@
-import React, { FC, useEffect, memo } from 'react';
+import { FC, useEffect } from 'react';
 import { Language } from '@utils/language';
 import { useLanguage, useAllPages, usePageContext } from './page-context';
 
@@ -14,14 +14,14 @@ export const LanguageChooser: FC = () => {
     }
 
     console.log(`Should switch to ${shouldSwitchToLang}`);
-    const pagesForMyLanguage = pages.map(p => ({
+    const pagesForMyLanguage = pages?.map(p => ({
       uid: p.uid,
       alternateUid: p.alternateLanguages.find(
         a => a.lang === shouldSwitchToLang
       )?.uid,
     }));
 
-    const pageToSwitchTo = pagesForMyLanguage.find(p => context.uid === p.uid);
+    const pageToSwitchTo = pagesForMyLanguage?.find(p => context.uid === p.uid);
 
     if (pageToSwitchTo?.alternateUid) {
       location.href = Language.getLanguageLink(
