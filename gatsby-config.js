@@ -76,7 +76,7 @@ module.exports = {
         previews: true,
         defaultLang: 'en-us',
         // shortenUrlLangs: true,
-        langs: ['en-us', 'fr'],
+        langs: ['en-us', 'fr', 'ro'],
         pages: [
           {
             type: 'Page',

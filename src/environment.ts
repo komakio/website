@@ -23,5 +23,6 @@ export class Environment {
   public static languages = [
     { label: 'English', flagCode: 'gb', languageCode: 'en-us' },
     { label: 'Français', flagCode: 'fr', languageCode: 'fr' },
+    { label: 'Română', flagCode: 'ro', languageCode: 'ro' },
   ];
 }

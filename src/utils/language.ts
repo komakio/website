@@ -1,8 +1,10 @@
+import { Environment } from '../environment';
+
 export class Language {
   private static localStorageKey = 'komakLang';
 
   public static defaultLang = 'en-us';
-  public static languageTags = ['en-us', 'fr'];
+  public static languageTags = Environment.languages.map(l => l.languageCode);
   public static shortLanguageTags = Language.languageTags.map(
     l => l.split('-')[0]
   );
