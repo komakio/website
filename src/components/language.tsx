@@ -29,14 +29,17 @@ export const LanguageChooser: FC = memo(() => {
       )?.uid,
     }));
 
-    const pageToSwitchTo = pagesForMyLanguage?.find(p => context.uid === p.uid);
-
+    const englishUid =
+      context.lang === 'en-us'
+        ? context.uid
+        : context.alternateLanguages.find(l => l.lang === 'en-us')?.uid;
+    const pageToSwitchTo = pagesForMyLanguage?.find(p => englishUid === p.uid);
     if (pageToSwitchTo?.alternateUid) {
       location.href = Language.getLanguageLink(
         shouldSwitchToLang,
         pageToSwitchTo.alternateUid
       );
     }
-  }, [language, pages, context.uid]);
+  }, [language, pages, context]);
   return null;
 });

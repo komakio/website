@@ -24,5 +24,6 @@ export class Environment {
     { label: 'English', flagCode: 'gb', languageCode: 'en-us' },
     { label: 'Français', flagCode: 'fr', languageCode: 'fr' },
     { label: 'Română', flagCode: 'ro', languageCode: 'ro' },
+    { label: 'Brasil', flagCode: 'br', languageCode: 'pt-br' },
   ];
 }

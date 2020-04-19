@@ -23,11 +23,7 @@ export class Language {
     if (localStorageValue && !path && localStorageValue !== path) {
       return localStorageValue;
     }
-    if (
-      localStorageValue &&
-      path &&
-      localStorageValue === Language.defaultLang
-    ) {
+    if (localStorageValue && path) {
       return localStorageValue;
     }
     if (!localStorageValue && !path) {
