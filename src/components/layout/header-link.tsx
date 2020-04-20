@@ -34,7 +34,9 @@ const Container = styled.div`
 
 export const HeaderLink: FC<HeaderLinkProps> = ({ element }) => {
   const language = useLanguage();
-  const link = Language.getLanguageLink(language, element.menu_link?._meta.uid);
+  const link =
+    element.menu_link?._meta.url ||
+    Language.getLanguageLink(language, element.menu_link?._meta.uid);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>();
 
   const linkStyles = { margin: '0 12px' };

@@ -82,6 +82,10 @@ export const Button: FC<ButtonProps> = memo(
               return;
             }
             event.preventDefault();
+            if (href.indexOf('http') === 0) {
+              document.location.href = href;
+              return;
+            }
             navigate(href);
           }}
           as="a"
