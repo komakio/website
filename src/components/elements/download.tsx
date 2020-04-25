@@ -27,6 +27,7 @@ export const DownloadElement: FC<DownloadProps> = memo(
                 href="https://apps.apple.com/dk/app/komak-protect-those-in-need/id1503987391?fbclid=IwAR3NuJWC81-SHU3FWaVqbrngLQvYhqOsNwEHBMztPGHhUo3Wxfa1foL3-3E"
                 target="_blank"
                 rel="noopener noreferrer"
+                id="apple-download"
               >
                 <img src={apple.url} style={{ height: 70 }} alt="" />
               </a>
@@ -35,6 +36,7 @@ export const DownloadElement: FC<DownloadProps> = memo(
                 href="https://play.google.com/store/apps/details?id=io.komak.app"
                 target="_blank"
                 rel="noopener noreferrer"
+                id="google-download"
               >
                 <img src={google.url} style={{ height: 100 }} alt="" />
               </a>
