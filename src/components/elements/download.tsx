@@ -1,5 +1,6 @@
 import React, { memo, FC } from 'react';
-import { Container, Row, Col } from 'styled-bootstrap-grid';
+import { Container, Row, Col, media } from 'styled-bootstrap-grid';
+import styled from 'styled-components';
 
 interface DownloadProps {
   apple: { url: string };
@@ -7,6 +8,15 @@ interface DownloadProps {
   title: string;
   subtitle: string;
 }
+
+const DownloadButtons = styled.div`
+  display: flex;
+  align-items: center;
+
+  ${media.xs`
+    flex-direction: column;
+  `}
+`;
 
 export const DownloadElement: FC<DownloadProps> = memo(
   ({ apple, google, subtitle, title }) => {
@@ -22,7 +32,7 @@ export const DownloadElement: FC<DownloadProps> = memo(
           <Col col={6} xs={12}>
             <h2>{title}</h2>
             <h4>{subtitle}</h4>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <DownloadButtons>
               <a
                 href="https://apps.apple.com/dk/app/komak-protect-those-in-need/id1503987391?fbclid=IwAR3NuJWC81-SHU3FWaVqbrngLQvYhqOsNwEHBMztPGHhUo3Wxfa1foL3-3E"
                 target="_blank"
@@ -31,7 +41,6 @@ export const DownloadElement: FC<DownloadProps> = memo(
               >
                 <img src={apple.url} style={{ height: 70 }} alt="" />
               </a>
-
               <a
                 href="https://play.google.com/store/apps/details?id=io.komak.app"
                 target="_blank"
@@ -40,7 +49,7 @@ export const DownloadElement: FC<DownloadProps> = memo(
               >
                 <img src={google.url} style={{ height: 100 }} alt="" />
               </a>
-            </div>
+            </DownloadButtons>
           </Col>
         </Row>
       </Container>
