@@ -23,8 +23,21 @@ export const DownloadElement: FC<DownloadProps> = memo(
             <h2>{title}</h2>
             <h4>{subtitle}</h4>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <img src={apple.url} style={{ height: 70 }} alt="" />
-              <img src={google.url} style={{ height: 100 }} alt="" />
+              <a
+                href="https://apps.apple.com/dk/app/komak-protect-those-in-need/id1503987391?fbclid=IwAR3NuJWC81-SHU3FWaVqbrngLQvYhqOsNwEHBMztPGHhUo3Wxfa1foL3-3E"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={apple.url} style={{ height: 70 }} alt="" />
+              </a>
+
+              <a
+                href="https://play.google.com/store/apps/details?id=io.komak.app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={google.url} style={{ height: 100 }} alt="" />
+              </a>
             </div>
           </Col>
         </Row>
