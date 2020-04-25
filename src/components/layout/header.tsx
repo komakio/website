@@ -102,19 +102,6 @@ export const Header: FC = () => {
           <FeatherIcon icon="menu" size={20} color={colors.green200} />
         </MenuIcon>
         <nav>
-          <HeaderLink
-            element={{
-              button: true,
-              menu_link: {
-                _meta: {
-                  lang: 'en',
-                  uid: 'd',
-                  url: 'https://www.producthunt.com/posts/komak',
-                },
-              },
-              title: 'Product Hunt',
-            }}
-          />
           {topMenus?.map(element => {
             return (
               <HeaderLink
