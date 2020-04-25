@@ -35,7 +35,6 @@ export const DownloadElement: FC<DownloadProps> = memo(
             <DownloadButtons>
               <a
                 href="https://apps.apple.com/dk/app/komak-protect-those-in-need/id1503987391?fbclid=IwAR3NuJWC81-SHU3FWaVqbrngLQvYhqOsNwEHBMztPGHhUo3Wxfa1foL3-3E"
-                target="_blank"
                 rel="noopener noreferrer"
                 id="apple-download"
               >
@@ -43,7 +42,6 @@ export const DownloadElement: FC<DownloadProps> = memo(
               </a>
               <a
                 href="https://play.google.com/store/apps/details?id=io.komak.app"
-                target="_blank"
                 rel="noopener noreferrer"
                 id="google-download"
               >
