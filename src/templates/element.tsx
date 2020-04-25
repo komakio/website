@@ -1,5 +1,4 @@
 import React, { memo, FC } from 'react';
-import { Container } from 'styled-bootstrap-grid';
 import { PageTitle } from '@components/elements/page-title';
 import { FullWidthBackground } from '@components/elements/full-width-background';
 import { IconBoxes } from '@components/elements/icon-boxes';
@@ -8,6 +7,7 @@ import { ContactForm } from '@components/elements/contact-form';
 import { ImageElement } from '@components/elements/image-element';
 import { RequestHelp } from '@components/elements/request-help';
 import { RichTextElement } from '@components/elements/rich-text';
+import { DownloadElement } from '@components/elements/download';
 
 interface PageElementProps {
   item: any;
@@ -48,6 +48,17 @@ export const PageElement: FC<PageElementProps> = memo(({ item, index }) => {
           title: i.icon_box_title,
           link: i.icon_box_link,
         }))}
+      />
+    );
+  }
+
+  if (item.type === 'download') {
+    return (
+      <DownloadElement
+        title={item.primary.download_title}
+        subtitle={item.primary.download_subtitle}
+        apple={item.primary.apple_download}
+        google={item.primary.google_download}
       />
     );
   }

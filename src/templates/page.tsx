@@ -183,6 +183,15 @@ export const query = graphql`
                   }
                 }
               }
+              ... on PRISMIC_PageBodyDownload {
+                type
+                primary {
+                  apple_download
+                  download_subtitle
+                  download_title
+                  google_download
+                }
+              }
               ... on PRISMIC_PageBodyContact_form {
                 type
                 primary {
