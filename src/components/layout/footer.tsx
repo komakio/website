@@ -116,8 +116,10 @@ export const Footer: FC = () => {
             onMouseOver={() => setIsDropdownOpen(true)}
             onMouseOut={() => setIsDropdownOpen(false)}
           >
-            <div className="language-label">{envLanguage.label}</div>
-            <Flag code={envLanguage.flagCode} height="25" />
+            <div className="language-label">{envLanguage?.label}</div>
+            {envLanguage?.flagCode && (
+              <Flag code={envLanguage?.flagCode} height="25" />
+            )}
           </div>
           {dropdownOpenDebounced && (
             <div

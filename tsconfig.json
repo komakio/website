@@ -5,11 +5,20 @@
       "@components/*": [
         "./components/*"
       ],
+      "@components2/*": [
+        "./components2/*"
+      ],
       "@utils/*": [
         "./utils/*"
       ],
       "@api/*": [
         "./api/*"
+      ],
+      "@models/*": [
+        "./models/*"
+      ],
+      "@templates/*": [
+        "./templates/*"
       ]
     },
     "allowJs": true,

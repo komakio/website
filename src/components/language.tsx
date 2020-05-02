@@ -8,13 +8,16 @@ export const LanguageChooser: FC = memo(() => {
   const context = usePageContext();
 
   useEffect(() => {
+    if (!context) {
+      return;
+    }
     const shouldSwitchToLang = Language.detect();
     if (!shouldSwitchToLang || language === shouldSwitchToLang) {
       return;
     }
 
     console.log(`Should switch to ${shouldSwitchToLang}`);
-    if (shouldSwitchToLang === Language.defaultLang) {
+    if (shouldSwitchToLang === Language.defaultLang && pages) {
       const currentPage = pages.find(p =>
         p.alternateLanguages.find(l => l.uid === context.uid)
       );
@@ -29,6 +32,9 @@ export const LanguageChooser: FC = memo(() => {
       )?.uid,
     }));
 
+    if (!context.lang) {
+      return;
+    }
     const englishUid =
       context.lang === 'en-us'
         ? context.uid

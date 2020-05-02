@@ -37,20 +37,20 @@ export const PageContextProvider = createContext<PageContext>(null);
 
 export const useLanguage = (): string => {
   const context = useContext(PageContextProvider);
-  return context.context.lang;
+  return context?.context.lang;
 };
 
 export const usePageContext = () => {
   const context = useContext(PageContextProvider);
-  return context.context;
+  return context?.context || {};
 };
 
 export const useTopMenus = () => {
   const context = useContext(PageContextProvider);
-  return context.topMenus;
+  return context?.topMenus;
 };
 
 export const useAllPages = () => {
   const context = useContext(PageContextProvider);
-  return context.allPages;
+  return context?.allPages;
 };
