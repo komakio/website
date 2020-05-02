@@ -85,6 +85,6 @@ steps:
       from_secret: GITHUB_PASSWORD
 ---
 kind: signature
-hmac: af3f73370108fc720ad3ccd65f93d859af951e02415fb567241c5cf816ee35e9
+hmac: a4cd6ae0a29c6d0aa881be261c53775035e6a30fd4e7c72884791ee253fae36b
 
 ...
