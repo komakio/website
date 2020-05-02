@@ -6,10 +6,10 @@ import { Language } from '@utils/language';
 export const SEO: FC = memo(() => {
   const {
     title,
-    description,
+    // description,
     lang,
     alternateLanguages,
-    image,
+    // image,
   } = usePageContext();
 
   return (
@@ -24,38 +24,38 @@ export const SEO: FC = memo(() => {
         hrefLang: lang.lang,
         href: `https://komak.io${Language.getLanguageLink(
           lang.lang,
-          lang.uid
+          lang.path
         )}`,
       }))}
       meta={[
-        {
-          name: `description`,
-          content: description,
-        },
+        // {
+        //   name: `description`,
+        //   content: description,
+        // },
         {
           property: `og:title`,
           content: title,
         },
-        {
-          property: `og:description`,
-          content: description,
-        },
+        // {
+        //   property: `og:description`,
+        //   content: description,
+        // },
         {
           property: `og:type`,
           content: `website`,
         },
-        {
-          property: 'og:image',
-          content: image
-            ? image.url
-            : 'https://images.prismic.io/komak/3ebea28b-f922-4970-9108-12f344c9c5d6_%28Put+Here%29+Cover+%26+Profile+photo.png?auto=compress,format',
-        },
-        {
-          property: 'twitter:image',
-          content: image
-            ? image.url
-            : 'https://images.prismic.io/komak/3ebea28b-f922-4970-9108-12f344c9c5d6_%28Put+Here%29+Cover+%26+Profile+photo.png?auto=compress,format',
-        },
+        // {
+        //   property: 'og:image',
+        //   content: image
+        //     ? image.url
+        //     : 'https://a.storyblok.com/f/82913/1200x630/993f124575/cover.jpeg',
+        // },
+        // {
+        //   property: 'twitter:image',
+        //   content: image
+        //     ? image.url
+        //     : 'https://a.storyblok.com/f/82913/1200x630/993f124575/cover.jpeg',
+        // },
         {
           name: `twitter:card`,
           content: `summary`,
@@ -68,10 +68,10 @@ export const SEO: FC = memo(() => {
           name: `twitter:title`,
           content: title,
         },
-        {
-          name: `twitter:description`,
-          content: description,
-        },
+        // {
+        //   name: `twitter:description`,
+        //   content: description,
+        // },
       ]}
     />
   );

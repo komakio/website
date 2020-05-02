@@ -9,7 +9,8 @@ const NotFoundPage = () => {
   return (
     <Layout
       context={{
-        context: { title: 'Not found', uid: 'not-found', lang: 'en-us' },
+        title: 'Not found',
+        lang: 'default',
       }}
     >
       <SEO />

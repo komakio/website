@@ -1,16 +1,16 @@
 import { Environment } from '../environment';
 
 export class Language {
-  private static localStorageKey = 'komakLang';
+  private static localStorageKey = 'komakStorybookLang';
 
-  public static defaultLang = 'en-us';
+  public static defaultLang = 'default';
   public static languageTags = Environment.languages.map(l => l.languageCode);
   public static shortLanguageTags = Language.languageTags.map(
     l => l.split('-')[0]
   );
 
   public static getLanguageLink(currentLanguage: string, uid: string) {
-    const path = uid === 'homepage' ? '' : `/${uid}`;
+    const path = uid === 'home' ? '' : `/${uid}`;
     if (currentLanguage === this.defaultLang) {
       return path;
     }

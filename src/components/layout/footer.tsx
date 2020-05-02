@@ -1,6 +1,8 @@
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '@utils/colors';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import Flag from 'react-world-flags';
 import { Container } from 'styled-bootstrap-grid';
 import { SocialIcon } from '@components/social-icon';

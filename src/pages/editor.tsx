@@ -5,12 +5,12 @@ import config from '../../gatsby-config';
 import { GlobalStyles } from '@components/layout/global-styles';
 // import { GlobalStyles } from '@styles/global-styles';
 
-const sbConfigs = config.plugins.filter(item => {
+const sbConfigs = config.plugins.filter((item: any) => {
   return item.resolve === 'gatsby-source-storyblok';
 });
 const sbConfig: any = sbConfigs.length > 0 ? sbConfigs[0] : {};
 
-const loadStoryblokBridge = function(cb) {
+const loadStoryblokBridge = function(cb: any) {
   const script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = `//app.storyblok.com/f/storyblok-latest.js?t=${sbConfig.options.accessToken}`;
@@ -22,7 +22,7 @@ class StoryblokEntry extends React.Component<
   {},
   { story: { id: string; content: { _uid: string; component: string } } }
 > {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = { story: null };
   }
@@ -34,13 +34,13 @@ class StoryblokEntry extends React.Component<
   }
 
   public loadStory() {
-    window.storyblok.get(
+    (window.storyblok as any).get(
       {
-        slug: window.storyblok.getParam('path'),
+        slug: (window.storyblok as any).getParam('path'),
         version: 'draft',
         resolve_relations: sbConfig.options.resolveRelations || [],
       },
-      data => {
+      (data: any) => {
         this.setState({ story: data.story });
       }
     );
@@ -66,7 +66,7 @@ class StoryblokEntry extends React.Component<
     });
 
     sb.pingEditor(() => {
-      if (sb.inEditor) {
+      if ((sb as any).inEditor) {
         sb.enterEditmode();
       }
     });

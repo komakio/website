@@ -19,7 +19,7 @@ import { HeaderLink } from '@components/elements/header-link';
 import { HeaderDropdown } from '@components/elements/header-dropdown';
 import { HeaderDropdownItem } from '@components/elements/header-dropdown-item';
 
-const ComponentList: { [componentName: string]: StoryblokComponent } = {
+const ComponentList: { [componentName: string]: any } = {
   page: Page,
   grid: Grid,
   column: Column,

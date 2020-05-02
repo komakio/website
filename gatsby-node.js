@@ -13,6 +13,11 @@ exports.createPages = async ({ graphql, actions }) => {
             node {
               id
               name
+              translated_slugs {
+                lang
+                name
+                path
+              }
               created_at
               uuid
               slug
@@ -40,7 +45,7 @@ exports.createPages = async ({ graphql, actions }) => {
     .forEach(entry => {
       const pagePath =
         entry.node.slug == 'home'
-          ? `${entry.node.lang === 'default' ? '/' : `${entry.node.lang}/`}`
+          ? `${entry.node.lang === 'default' ? '' : `${entry.node.lang}/`}`
           : `${entry.node.full_slug}/`;
       createPage({
         path: `/${pagePath}`,

@@ -4,6 +4,13 @@ export type StoryblokSubElement<T = any> = Blok & T;
 
 interface StoryblokComponentProps<T = any> {
   blok: StoryblokSubElement<T>;
+  lang?: string;
+  title?: string;
+  alternateLanguages?: {
+    lang: string;
+    name: string;
+    path: string;
+  }[];
 }
 
 interface Blok {

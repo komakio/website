@@ -4,6 +4,8 @@ import { StoryblokComponent } from '@models/storyblok-component';
 import {
   getFixedGatsbyImage,
   getFluidGatsbyImage,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
 } from 'gatsby-storyblok-image';
 import Img from 'gatsby-image';
 

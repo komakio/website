@@ -1,4 +1,4 @@
-import React, { memo, FC } from 'react';
+import React, { memo, FC, ChangeEvent } from 'react';
 import styled, { css } from 'styled-components';
 import { colors } from '@utils/colors';
 import { selectInputStyles } from './_common';
@@ -44,7 +44,7 @@ export const Input: FC<InputProps> = memo(
       <InputComponent
         as={textarea ? 'textarea' : undefined}
         name={name}
-        onChange={event => onChangeText?.(event.target.value)}
+        onChange={(event: any) => onChangeText?.(event.target.value)}
         hasError={!!error}
         textarea={textarea}
         autoComplete={autoComplete}
