@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import SbEditable from 'storyblok-react';
-import { storyblokClient } from '../storyblok-component';
-import { Components } from '../templates/components';
+import { storyblokClient } from '../../storyblok-component';
+import { Components } from '../../templates/components';
 import { StoryblokComponent } from '@models/storyblok-component';
 import styled from 'styled-components';
 import { colors } from '@utils/colors';

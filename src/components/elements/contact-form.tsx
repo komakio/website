@@ -1,4 +1,4 @@
-import React, { memo, FC, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { Container } from 'styled-bootstrap-grid';
 import { useForm } from 'react-hook-form';
 import { Recaptcha } from '@components/recaptcha';
@@ -8,7 +8,7 @@ import { FormUtils } from '@utils/form';
 import { Button } from '@components/button';
 import SbEditable from 'storyblok-react';
 import { StoryblokComponent } from '@models/storyblok-component';
-import { Environment } from '../environment';
+import { Environment } from '../../environment';
 import Axios from 'axios';
 import { AccessToken } from '@api/access-token';
 

@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Components } from '../../templates/components';
+import { Components } from '../../../templates/components';
 import SbEditable from 'storyblok-react';
 import { Col } from 'styled-bootstrap-grid';
 import {

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { Components } from '../templates/components';
-import { Layout } from '../components/layout/layout';
+import { Components } from '../../templates/components';
+import { Layout } from '../../components/layout/layout';
 import {
   StoryblokComponent,
   StoryblokSubElement,
