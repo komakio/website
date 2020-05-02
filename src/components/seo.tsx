@@ -6,10 +6,10 @@ import { Language } from '@utils/language';
 export const SEO: FC = memo(() => {
   const {
     title,
-    // description,
+    description,
     lang,
     alternateLanguages,
-    // image,
+    image,
   } = usePageContext();
 
   return (
@@ -28,34 +28,34 @@ export const SEO: FC = memo(() => {
         )}`,
       }))}
       meta={[
-        // {
-        //   name: `description`,
-        //   content: description,
-        // },
+        {
+          name: `description`,
+          content: description,
+        },
         {
           property: `og:title`,
           content: title,
         },
-        // {
-        //   property: `og:description`,
-        //   content: description,
-        // },
+        {
+          property: `og:description`,
+          content: description,
+        },
         {
           property: `og:type`,
           content: `website`,
         },
-        // {
-        //   property: 'og:image',
-        //   content: image
-        //     ? image.url
-        //     : 'https://a.storyblok.com/f/82913/1200x630/993f124575/cover.jpeg',
-        // },
-        // {
-        //   property: 'twitter:image',
-        //   content: image
-        //     ? image.url
-        //     : 'https://a.storyblok.com/f/82913/1200x630/993f124575/cover.jpeg',
-        // },
+        {
+          property: 'og:image',
+          content:
+            image ||
+            'https://a.storyblok.com/f/82913/1200x630/993f124575/cover.jpeg',
+        },
+        {
+          property: 'twitter:image',
+          content:
+            image ||
+            'https://a.storyblok.com/f/82913/1200x630/993f124575/cover.jpeg',
+        },
         {
           name: `twitter:card`,
           content: `summary`,
@@ -68,10 +68,10 @@ export const SEO: FC = memo(() => {
           name: `twitter:title`,
           content: title,
         },
-        // {
-        //   name: `twitter:description`,
-        //   content: description,
-        // },
+        {
+          name: `twitter:description`,
+          content: description,
+        },
       ]}
     />
   );
