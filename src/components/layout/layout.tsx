@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { Reset } from 'styled-reset';
 import { BaseCSS } from 'styled-bootstrap-grid';
 
-import { Header, headerHeight } from './header';
 import { GlobalStyles } from './global-styles';
 import { RecaptchaInit } from '@components/recaptcha';
 import styled from 'styled-components';
@@ -11,6 +10,8 @@ import { PageContext, PageContextProvider } from '@components/page-context';
 import { SEO } from '@components/seo';
 import '../../sentry';
 import { Footer, footerHeight } from './footer';
+import { headerHeight } from '@components/elements/header';
+import { Header } from './header';
 
 const PageContainer = styled.div`
   position: fixed;

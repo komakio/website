@@ -14,6 +14,10 @@ import { IconBoxes } from '@components/elements/icon-boxes';
 import { Column } from '@components/elements/layout-components/column';
 import { ButtonComponent } from '@components/elements/button';
 import { RequestHelp } from '@components/elements/request-help';
+import { Header } from '@components/elements/header';
+import { HeaderLink } from '@components/elements/header-link';
+import { HeaderDropdown } from '@components/elements/header-dropdown';
+import { HeaderDropdownItem } from '@components/elements/header-dropdown-item';
 
 const ComponentList: { [componentName: string]: StoryblokComponent } = {
   page: Page,
@@ -27,6 +31,10 @@ const ComponentList: { [componentName: string]: StoryblokComponent } = {
   fullWidthBackground: FullWidthBackground,
   contactForm: ContactForm,
   requestHelpForm: RequestHelp,
+  header: Header,
+  headerLink: HeaderLink,
+  headerDropdown: HeaderDropdown,
+  headerDropdownItem: HeaderDropdownItem,
 
   iconBox: IconBox,
   iconBoxes: IconBoxes,

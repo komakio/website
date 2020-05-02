@@ -45,11 +45,6 @@ export const usePageContext = () => {
   return context?.context || {};
 };
 
-export const useTopMenus = () => {
-  const context = useContext(PageContextProvider);
-  return context?.topMenus;
-};
-
 export const useAllPages = () => {
   const context = useContext(PageContextProvider);
   return context?.allPages;

@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { colors } from '@utils/colors';
 import { Language } from '@utils/language';
-import { useTopMenus, useLanguage } from '@components/page-context';
+import { useLanguage } from '@components/page-context';
 import { Button } from '@components/button';
 
 export const menuWidth = 200;
@@ -44,7 +44,8 @@ interface MobileMenuProps {
 
 export const MobileMenu: FC<MobileMenuProps> = ({ open, onClose }) => {
   const language = useLanguage();
-  const topMenus = useTopMenus();
+
+  const topMenus = [];
 
   return (
     <>

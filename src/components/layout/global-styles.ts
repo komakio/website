@@ -1,8 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
-import { headerHeight } from './header';
 import { colors } from '@utils/colors';
 import { media } from 'styled-bootstrap-grid';
 import { footerHeight } from './footer';
+import { headerHeight } from '@components/elements/header';
 
 export const GlobalStyles = createGlobalStyle`
     body {

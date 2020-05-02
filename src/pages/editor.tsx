@@ -2,6 +2,7 @@ import React from 'react';
 import { Components } from '../templates/components';
 import SbEditable from 'storyblok-react';
 import config from '../../gatsby-config';
+import { GlobalStyles } from '@components/layout/global-styles';
 // import { GlobalStyles } from '@styles/global-styles';
 
 const sbConfigs = config.plugins.filter(item => {
@@ -80,6 +81,7 @@ class StoryblokEntry extends React.Component<
 
     return (
       <SbEditable content={content}>
+        <GlobalStyles />
         <div>
           {React.createElement(Components(content.component), {
             key: content._uid,
