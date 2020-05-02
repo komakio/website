@@ -50,7 +50,7 @@ export const StoryblokEntry: FC<StoryblokEntryProps> = memo(
       key: story.content._uid,
       blok: { ...story.content },
       lang,
-      title: languageContext.name,
+      title: languageContext?.name,
       alternateLanguages: allLanguages.filter(l => l.lang !== lang),
     });
   }
