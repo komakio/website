@@ -5,9 +5,6 @@
       "@components/*": [
         "./components/*"
       ],
-      "@components2/*": [
-        "./components2/*"
-      ],
       "@utils/*": [
         "./utils/*"
       ],

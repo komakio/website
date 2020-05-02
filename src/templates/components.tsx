@@ -1,18 +1,24 @@
 import { ComponentNotFound } from './component-not-found';
 import { StoryblokComponent } from '@models/storyblok-component';
-import { Grid } from '@components2/layout-components/grid';
-import { RichText } from '@components2/rich-text';
-import { Page } from '@components2/page';
-import { ContainerComponent } from '@components2/layout-components/container';
-import { VerticalSpacer } from '@components2/spacer';
-import { ImageComponent } from '@components2/image';
-import { DownloadElement } from '@components2/download';
-import { FullWidthBackground } from '@components2/full-width-background';
-import { ContactForm } from '@components2/contact-form';
+import { Grid } from '@components/elements/layout-components/grid';
+import { RichText } from '@components/elements/rich-text';
+import { Page } from '@components/elements/page';
+import { ContainerComponent } from '@components/elements/layout-components/container';
+import { VerticalSpacer } from '@components/elements/spacer';
+import { ImageComponent } from '@components/elements/image';
+import { DownloadElement } from '@components/elements/download';
+import { FullWidthBackground } from '@components/elements/full-width-background';
+import { ContactForm } from '@components/elements/contact-form';
+import { IconBox } from '@components/elements/icon-box';
+import { IconBoxes } from '@components/elements/icon-boxes';
+import { Column } from '@components/elements/layout-components/column';
+import { ButtonComponent } from '@components/elements/button';
+import { RequestHelp } from '@components/elements/request-help';
 
 const ComponentList: { [componentName: string]: StoryblokComponent } = {
   page: Page,
   grid: Grid,
+  column: Column,
   richText: RichText,
   container: ContainerComponent,
   verticalSpacer: VerticalSpacer,
@@ -20,6 +26,11 @@ const ComponentList: { [componentName: string]: StoryblokComponent } = {
   download: DownloadElement,
   fullWidthBackground: FullWidthBackground,
   contactForm: ContactForm,
+  requestHelpForm: RequestHelp,
+
+  iconBox: IconBox,
+  iconBoxes: IconBoxes,
+  button: ButtonComponent,
 };
 
 export const Components = (type: string) => {

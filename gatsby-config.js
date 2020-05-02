@@ -78,34 +78,6 @@ module.exports = {
         version: 'draft',
       },
     },
-    // {
-    //   resolve: 'gatsby-source-prismic-graphql',
-    //   options: {
-    //     repositoryName: 'Komak',
-    //     accessToken: `${process.env.PRISMIC_API_KEY}`,
-    //     path: '/preview',
-    //     previews: true,
-    //     defaultLang: 'en-us',
-    //     // shortenUrlLangs: true,
-    //     langs: ['en-us', 'fr', 'ro', 'pt-br'],
-    //     pages: [
-    //       {
-    //         type: 'Page',
-    //         match: '/:lang?/:uid',
-    //         filter: data => data.node._meta.uid !== 'homepage',
-    //         path: '/pages',
-    //         component: require.resolve('./src/templates/page.tsx'),
-    //       },
-    //       {
-    //         type: 'Page',
-    //         match: '/:lang?',
-    //         filter: data => data.node._meta.uid === 'homepage',
-    //         path: '/homepageqwqdqwdqw',
-    //         component: require.resolve('./src/templates/page.tsx'),
-    //       },
-    //     ],
-    //   },
-    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

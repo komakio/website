@@ -2,9 +2,6 @@
 
 FROM node:12-buster as build
 
-ARG PRISMIC_API_KEY
-ENV PRISMIC_API_KEY=$PRISMIC_API_KEY
-
 WORKDIR /app
 
 COPY package*.json ./

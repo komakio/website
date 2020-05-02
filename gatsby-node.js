@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const fs = require('fs');
 const path = require('path');
-const dir = './.cache/caches/gatsby-source-prismic-graphql';
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -52,9 +50,4 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       });
     });
-};
-exports.onPreBootstrap = () => {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
-  }
 };

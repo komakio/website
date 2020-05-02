@@ -6,7 +6,9 @@ import { Input } from '@components/form/input';
 import { FormElement } from '@components/form/form-element';
 import { FormUtils } from '@utils/form';
 import { Button } from '@components/button';
-import { Environment } from '../../environment';
+import SbEditable from 'storyblok-react';
+import { StoryblokComponent } from '@models/storyblok-component';
+import { Environment } from '../environment';
 import Axios from 'axios';
 import { AccessToken } from '@api/access-token';
 
@@ -27,17 +29,18 @@ interface FormData {
   message: string;
 }
 
-export const ContactForm: FC<ContactFormProps> = memo(
-  ({
-    emailLabel,
-    hasBody,
-    messageLabel,
-    nameLabel,
-    reason,
-    submitLabel,
-    failedLabel,
-    successLabel,
-  }) => {
+export const ContactForm: StoryblokComponent<ContactFormProps> = memo(
+  ({ blok }) => {
+    const {
+      emailLabel,
+      hasBody,
+      messageLabel,
+      nameLabel,
+      reason,
+      submitLabel,
+      failedLabel,
+      successLabel,
+    } = blok;
     const { register, handleSubmit, errors } = useForm<FormData>({});
     const [loading, setLoading] = useState<boolean>();
     const [success, setSuccess] = useState<boolean>();
@@ -86,7 +89,7 @@ export const ContactForm: FC<ContactFormProps> = memo(
     }
 
     return (
-      <Container>
+      <SbEditable content={blok}>
         <Recaptcha action="contact_form" />
         <form onSubmit={onSubmit} noValidate={true}>
           <FormElement label={nameLabel} error={errors.name}>
@@ -115,7 +118,7 @@ export const ContactForm: FC<ContactFormProps> = memo(
           )}
           {!loading && <Button type="submit">{submitLabel}</Button>}
         </form>
-      </Container>
+      </SbEditable>
     );
   }
 );

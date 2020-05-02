@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function HTML(props) {
-  const isDev =
-    props.headComponents?.find(c => c.key === 'environment')?.props?.content ===
-    'environment=development';
-
   return (
     <html {...props.htmlAttributes}>
       <head>
@@ -26,14 +22,6 @@ export default function HTML(props) {
           dangerouslySetInnerHTML={{ __html: props.body }}
         />
         {props.postBodyComponents}
-
-        {!isDev && (
-          <script
-            async
-            defer
-            src="//static.cdn.prismic.io/prismic.js?repo=Komak&new=true"
-          ></script>
-        )}
       </body>
     </html>
   );

@@ -1,28 +1,16 @@
-import React, { memo, FC } from 'react';
-import styled, { css } from 'styled-components';
-import { Container, Row, Col } from 'styled-bootstrap-grid';
-import { Button } from '@components/button';
-import { Language } from '@utils/language';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import FeatherIcon from 'feather-icons-react';
-import { Link } from 'gatsby';
-import { useLanguage } from '@components/page-context';
-import { RichText } from '../rich-text';
+import React, { memo } from 'react';
+import styled from 'styled-components';
+import { Container, Row } from 'styled-bootstrap-grid';
+import SbEditable from 'storyblok-react';
+import {
+  StoryblokComponent,
+  StoryblokSubElement,
+} from '@models/storyblok-component';
+import { Components } from '@templates/components';
 
 interface IconBoxesProps {
-  title: any;
-  items: {
-    icon: string;
-    title: string;
-    description: string;
-    link: {
-      _meta: {
-        uid: string;
-        alternateLanguages: { lang: string; uid: string }[];
-      };
-    };
-  }[];
+  title: string;
+  items: StoryblokSubElement<IconBoxesProps>[];
 }
 
 const StyledContainer = styled.section`
@@ -30,49 +18,28 @@ const StyledContainer = styled.section`
   padding: 80px 0;
 `;
 
-const Box = styled(Link)`
-  display: block;
-  background: white;
-  padding: 40px;
-  margin-bottom: 20px;
-  text-align: center;
-  min-height: 220px;
-  color: black;
-  text-decoration: none;
+export const IconBoxes: StoryblokComponent<IconBoxesProps> = memo(
+  ({ blok }) => {
+    const { title, items } = blok;
 
-  p {
-    font-size: 18px;
+    return (
+      <SbEditable content={blok}>
+        <StyledContainer>
+          <Container>
+            <div className="text-center">
+              <h3>{title}</h3>
+            </div>
+            <Row>
+              {items.map(item => {
+                return React.createElement(Components(item.component), {
+                  key: item._uid,
+                  blok: item,
+                });
+              })}
+            </Row>
+          </Container>
+        </StyledContainer>
+      </SbEditable>
+    );
   }
-  svg {
-    margin-bottom: 20px;
-  }
-`;
-
-export const IconBoxes: FC<IconBoxesProps> = memo(({ title, items }) => {
-  const language = useLanguage();
-
-  return (
-    <StyledContainer>
-      <Container>
-        <div className="text-center">
-          <RichText content={title} />
-        </div>
-        <Row>
-          {items.map(item => {
-            return (
-              <Col key={item.title} xs={12} lg={4}>
-                <Box
-                  to={Language.getLanguageLink(language, item.link._meta.uid)}
-                >
-                  <FeatherIcon icon={item.icon} size={60} />
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </Box>
-              </Col>
-            );
-          })}
-        </Row>
-      </Container>
-    </StyledContainer>
-  );
-});
+);

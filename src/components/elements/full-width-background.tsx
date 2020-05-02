@@ -4,6 +4,9 @@ import { Container } from 'styled-bootstrap-grid';
 import { Button } from '@components/button';
 import { Language } from '@utils/language';
 import { useLanguage } from '@components/page-context';
+import SbEditable from 'storyblok-react';
+import { StoryblokComponent } from '@models/storyblok-component';
+import { LinkBlok } from '@models/link';
 
 const StyledPageTitle = styled.h1`
   font-size: 40px;
@@ -11,10 +14,8 @@ const StyledPageTitle = styled.h1`
 
 interface FullWidthBackgroundProps {
   ctaLabel: string;
-  ctaLink: {
-    _meta: { uid: string };
-  };
-  image: { url: string };
+  ctaLink: LinkBlok;
+  image: string;
   subtitle: string;
   title: string;
 }
@@ -67,20 +68,25 @@ const ContentBlock = styled.div`
   }
 `;
 
-export const FullWidthBackground: FC<FullWidthBackgroundProps> = memo(
-  ({ title, ctaLabel, ctaLink, image, subtitle }) => {
+export const FullWidthBackground: StoryblokComponent<FullWidthBackgroundProps> = memo(
+  ({ blok }) => {
+    const { title, ctaLabel, ctaLink, image, subtitle } = blok;
     const language = useLanguage();
 
     return (
-      <StyledBackgroundImage image={image.url}>
-        <ContentBlock>
-          <h1>{title}</h1>
-          <h2>{subtitle}</h2>
-          <Button href={Language.getLanguageLink(language, ctaLink._meta.uid)}>
-            {ctaLabel}
-          </Button>
-        </ContentBlock>
-      </StyledBackgroundImage>
+      <SbEditable content={blok}>
+        <StyledBackgroundImage image={image}>
+          <ContentBlock>
+            <h1>{title}</h1>
+            <h2>{subtitle}</h2>
+            <Button
+              href={Language.getLanguageLink(language, ctaLink.cached_url)}
+            >
+              {ctaLabel}
+            </Button>
+          </ContentBlock>
+        </StyledBackgroundImage>
+      </SbEditable>
     );
   }
 );

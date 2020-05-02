@@ -57,7 +57,7 @@ export const StyledButton = styled.button<ButtonProps>`
     `}
 `;
 
-interface ButtonProps {
+export interface ButtonProps {
   href?: string;
   onClick?: () => void;
   type?: string;

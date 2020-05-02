@@ -80,7 +80,6 @@ class StoryblokEntry extends React.Component<
 
     return (
       <SbEditable content={content}>
-        {/* <GlobalStyles /> */}
         <div>
           {React.createElement(Components(content.component), {
             key: content._uid,
