@@ -68,7 +68,9 @@ class StoryblokEntry extends React.Component<
           payload.story.content,
           payload.story.id
         );
-        this.setState({ story: payload.story });
+        this.setState({
+          story: { lang: this.state.story.lang, ...payload.story },
+        });
       }
     });
 
@@ -80,12 +82,12 @@ class StoryblokEntry extends React.Component<
   }
 
   public render() {
-    const story = this.state.story;
+    const { story } = this.state;
     if (story === null) {
       return <div>LOADING</div>;
     }
 
-    const content = story.content;
+    const { content, lang, name } = story;
     return (
       <SbEditable content={content}>
         <GlobalStyles />
@@ -93,8 +95,8 @@ class StoryblokEntry extends React.Component<
           {React.createElement(Components(content.component), {
             key: content._uid,
             blok: content,
-            lang: story.lang,
-            title: story.name,
+            lang,
+            title: name,
           })}
         </div>
       </SbEditable>
