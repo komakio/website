@@ -3,6 +3,7 @@ import { Components } from '../templates/components';
 import SbEditable from 'storyblok-react';
 import config from '../../gatsby-config';
 import { GlobalStyles } from '@components/layout/global-styles';
+import { Loading } from '@templates/loading';
 // import { GlobalStyles } from '@styles/global-styles';
 
 const sbConfigs = config.plugins.filter((item: any) => {
@@ -84,7 +85,7 @@ class StoryblokEntry extends React.Component<
   public render() {
     const { story } = this.state;
     if (story === null) {
-      return <div>LOADING</div>;
+      return <Loading />;
     }
 
     const { content, lang, name } = story;
