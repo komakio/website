@@ -3,7 +3,7 @@ import { Environment } from '../environment';
 export class Language {
   private static localStorageKey = 'komakStorybookLang';
 
-  public static defaultLang = 'default';
+  public static defaultLang = 'en';
   public static languageTags = Environment.languages.map(l => l.languageCode);
   public static shortLanguageTags = Language.languageTags.map(
     l => l.split('-')[0]

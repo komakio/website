@@ -1,10 +1,12 @@
 import { FC, useEffect, memo } from 'react';
 import { Language } from '@utils/language';
-import { useLanguage } from './page-context';
+import { useLanguage, usePageContext } from './page-context';
+import { navigate } from 'gatsby';
 
 export const LanguageChooser: FC = memo(() => {
-  const language = useLanguage();
-  // const context = usePageContext();
+  const context = usePageContext();
+  const l = useLanguage();
+  const language = l === 'default' ? 'en' : l;
 
   useEffect(() => {
     const shouldSwitchToLang = Language.detect();
@@ -13,35 +15,12 @@ export const LanguageChooser: FC = memo(() => {
     }
 
     console.log(`Should switch to ${shouldSwitchToLang}`);
-    // if (shouldSwitchToLang === Language.defaultLang) {
-    //   const currentPage = pages.find(p =>
-    //     p.alternateLanguages.find(l => l.uid === context.uid)
-    //   );
-
-    //   location.href =
-    //     currentPage.uid === 'homepage' ? '/' : `/${currentPage.uid}`;
-    // }
-    // const pagesForMyLanguage = pages?.map(p => ({
-    //   uid: p.uid,
-    //   alternateUid: p.alternateLanguages.find(
-    //     a => a.lang === shouldSwitchToLang
-    //   )?.uid,
-    // }));
-
-    // if (!context.lang) {
-    //   return;
-    // }
-    // const englishUid =
-    //   context.lang === 'default'
-    //     ? context.uid
-    //     : context.alternateLanguages.find(l => l.lang === 'en-us')?.uid;
-    // const pageToSwitchTo = pagesForMyLanguage?.find(p => englishUid === p.uid);
-    // if (pageToSwitchTo?.alternateUid) {
-    //   location.href = Language.getLanguageLink(
-    //     shouldSwitchToLang,
-    //     pageToSwitchTo.alternateUid
-    //   );
-    // }
-  }, []);
+    const finalSlug = context.slug === 'home' ? '' : context.slug;
+    if (shouldSwitchToLang === Language.defaultLang) {
+      navigate(`/${finalSlug}`);
+    } else {
+      navigate(`/${shouldSwitchToLang}/${finalSlug}`);
+    }
+  }, [context.slug, language]);
   return null;
 });

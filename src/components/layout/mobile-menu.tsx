@@ -55,9 +55,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({
       {open && <Overlay onClick={onClose} />}
       <StyledMenu open={open}>
         <h1>
-          <Link to={language === Language.defaultLang ? '/' : `/${language}`}>
-            Komak
-          </Link>
+          <Link to={language === 'default' ? '/' : `/${language}`}>Komak</Link>
         </h1>
 
         {elements?.map(element => {

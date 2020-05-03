@@ -21,7 +21,7 @@ export class Environment {
       : 'https://api-staging.komak.io';
 
   public static languages = [
-    { label: 'English', flagCode: 'gb', languageCode: 'default' },
+    { label: 'English', flagCode: 'gb', languageCode: 'en' },
     { label: 'Français', flagCode: 'fr', languageCode: 'fr' },
     { label: 'Română', flagCode: 'ro', languageCode: 'ro' },
     { label: 'Brasil', flagCode: 'br', languageCode: 'pt-br' },

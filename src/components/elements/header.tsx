@@ -96,7 +96,7 @@ export const Header: StoryblokComponent<HeaderProps> = ({ blok }) => {
         />
         <Container>
           <h1>
-            <Link to={language === Language.defaultLang ? '/' : `/${language}`}>
+            <Link to={language === 'default' ? '/' : `/${language}`}>
               Komak
             </Link>
           </h1>

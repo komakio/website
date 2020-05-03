@@ -70,7 +70,7 @@ const StyledFooter = styled.footer`
 export const Footer: FC = () => {
   const language = useLanguage();
   const envLanguage = Environment.languages.find(
-    l => l.languageCode === language
+    l => l.languageCode === (language === 'default' ? 'en' : language)
   );
   const [referenceElement, setReferenceElement] = React.useState(null);
   const [popperElement, setPopperElement] = React.useState(null);
@@ -110,7 +110,6 @@ export const Footer: FC = () => {
           >
             <SocialIcon icon="instagram" />
           </a>
-
           <div className="flex"></div>
           <div
             className="language"
