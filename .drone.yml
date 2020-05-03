@@ -72,8 +72,9 @@ steps:
 - name: git deploy
   image: bitnami/git:2.26.2
   commands:
+  - mkdir $HOME/.ssh
   - ssh-keyscan github.com >> ~/.ssh/known_hosts
-  - mkdir $HOME/.ssh && echo "$GITHUB_SSH" > $HOME/.ssh/id_rsa && chmod 0600 $HOME/.ssh/id_rsa
+  - echo "$GITHUB_SSH" > $HOME/.ssh/id_rsa && chmod 0600 $HOME/.ssh/id_rsa
   - git clone git@github.com:wikibusiness/komak-k8s.git
   # - cd komak-k8s
   # - rm -f src/website-version.yaml
@@ -85,6 +86,6 @@ steps:
       from_secret: GIT_SSH
 ---
 kind: signature
-hmac: db34f39bff3c44348cce2c65aeed1483de65ca8e20d33f9f94cdfd94e105e2b9
+hmac: 6d7eea7aacafd2174c109963fb262aaa9d386c81ffc6f192ee9e54f281d0b59b
 
 ...
