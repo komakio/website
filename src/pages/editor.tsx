@@ -20,7 +20,14 @@ const loadStoryblokBridge = function(cb: any) {
 
 class StoryblokEntry extends React.Component<
   {},
-  { story: { id: string; content: { _uid: string; component: string } } }
+  {
+    story: {
+      id: string;
+      lang: string;
+      name: string;
+      content: { _uid: string; component: string };
+    };
+  }
 > {
   constructor(props: any) {
     super(props);
@@ -73,12 +80,12 @@ class StoryblokEntry extends React.Component<
   }
 
   public render() {
-    if (this.state.story === null) {
+    const story = this.state.story;
+    if (story === null) {
       return <div>LOADING</div>;
     }
 
-    const content = this.state.story.content;
-
+    const content = story.content;
     return (
       <SbEditable content={content}>
         <GlobalStyles />
@@ -86,6 +93,8 @@ class StoryblokEntry extends React.Component<
           {React.createElement(Components(content.component), {
             key: content._uid,
             blok: content,
+            lang: story.lang,
+            title: story.name,
           })}
         </div>
       </SbEditable>

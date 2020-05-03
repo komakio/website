@@ -161,7 +161,6 @@ export const RequestHelp: StoryblokComponent<RequestHelpProps> = ({ blok }) => {
                   >
                     <AutoComplete
                       onChooseLocation={props => {
-                        console.log(props);
                         setValue('longitude', props.longitude);
                         setValue('latitude', props.latitude);
                         setValue('location', props.label);

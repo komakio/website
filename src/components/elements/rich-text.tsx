@@ -30,14 +30,11 @@ export const RichText: StoryblokComponent<RichTextProps> = memo(({ blok }) => {
     }
 
     const blokIndexes = items.reduce<number[]>((previous, item, index) => {
-      // console.log(item.type)
       if (item.type === 'blok') {
         return [...previous, index];
       }
       return previous;
     }, []);
-
-    // console.log(blokIndexes)
 
     let lastIndexMade = 0;
     blokIndexes?.forEach(index => {
@@ -50,7 +47,6 @@ export const RichText: StoryblokComponent<RichTextProps> = memo(({ blok }) => {
     if (lastItems.length) {
       results.push({ type: 'doc', content: lastItems });
     } else {
-      // console.log('blok')
       results.push({
         type: 'blok',
         content: items[items.length]?.attrs.body[0],

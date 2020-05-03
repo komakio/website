@@ -5,6 +5,11 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const storyblokEntry = path.resolve('src/templates/storyblok-entry.tsx');
 
+  // translated_slugs {
+  //   lang
+  //   name
+  //   path
+  // }
   const result = await graphql(
     `
       {
@@ -13,11 +18,6 @@ exports.createPages = async ({ graphql, actions }) => {
             node {
               id
               name
-              translated_slugs {
-                lang
-                name
-                path
-              }
               created_at
               uuid
               slug
@@ -39,6 +39,7 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors;
   }
 
+  // console.log(entries);
   const entries = result.data.allStoryblokEntry.edges;
   entries
     .filter(entry => ['page'].includes(entry.node.field_component))

@@ -4,7 +4,6 @@ import { Components } from './components';
 interface StoryblokEntryProps {
   pageContext: {
     story: {
-      slug: string;
       lang: string;
       uuid: string;
       content: string;
@@ -33,25 +32,11 @@ export const StoryblokEntry: FC<StoryblokEntryProps> = memo(
 
     const lang = pageContext.story.lang;
 
-    const allLanguages = [
-      {
-        lang: 'default',
-        name: pageContext.story.name,
-        path: pageContext.story.slug,
-      },
-      ...(pageContext.story.translated_slugs?.map(l => ({
-        ...l,
-        name: l.name || pageContext.story.name,
-      })) || []),
-    ];
-    const languageContext = allLanguages.find(s => s.lang === lang);
-
     return React.createElement(Components(story.content.component), {
       key: story.content._uid,
       blok: { ...story.content },
       lang,
-      title: languageContext?.name,
-      alternateLanguages: allLanguages.filter(l => l.lang !== lang),
+      title: pageContext.story.name,
     });
   }
 );
