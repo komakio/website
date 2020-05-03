@@ -72,9 +72,7 @@ steps:
 - name: git deploy
   image: bitnami/git:2.26.2
   commands:
-  - mkdir $HOME/.ssh && echo "$GITHUB_SSH" > $HOME/.ssh/id_rsa
-  - cat $HOME/.ssh/id_rsa
-  - ssh
+  - mkdir $HOME/.ssh && echo "$GITHUB_SSH" > $HOME/.ssh/id_rsa && chmod 0600 $HOME/.ssh/id_rsa
   - git clone git@github.com:wikibusiness/komak-k8s.git
   # - cd komak-k8s
   # - rm -f src/website-version.yaml
