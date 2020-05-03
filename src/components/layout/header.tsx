@@ -18,8 +18,10 @@ export const Header = () => {
       }
     }
   `);
-  const story = data.allStoryblokEntry?.edges?.find(e => e.node.lang === lang)
-    ?.node;
+  console.log(lang);
+  const story = data.allStoryblokEntry?.edges?.find(
+    e => e.node.lang === (lang || 'default')
+  )?.node;
 
   return <StoryblokEntry pageContext={{ story }} />;
 };

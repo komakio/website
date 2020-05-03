@@ -26,9 +26,15 @@ export const StoryblokEntry: FC<StoryblokEntryProps> = memo(
     const story: Story = useMemo(() => {
       return {
         ...pageContext.story,
-        content: JSON.parse(pageContext.story.content),
+        content: pageContext.story
+          ? JSON.parse(pageContext.story.content)
+          : null,
       };
     }, [pageContext]);
+
+    if (!pageContext.story) {
+      return null;
+    }
 
     const lang = pageContext.story.lang;
 

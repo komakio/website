@@ -70,7 +70,7 @@ steps:
     tags: ${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}
 
 - name: git deploy
-  image: bitnami/git
+  image: bitnami/git:2.26.2
   commands:
   - git clone "https://$(echo $githubUsername):$(echo $githubPassword)@github.com/wikibusiness/komak-k8s.git"
   - cd komak-k8s
