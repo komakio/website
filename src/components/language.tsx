@@ -12,8 +12,8 @@ export const LanguageChooser: FC = memo(() => {
       return;
     }
 
-    // console.log(`Should switch to ${shouldSwitchToLang}`);
-    // if (shouldSwitchToLang === Language.defaultLang && pages) {
+    console.log(`Should switch to ${shouldSwitchToLang}`);
+    // if (shouldSwitchToLang === Language.defaultLang) {
     //   const currentPage = pages.find(p =>
     //     p.alternateLanguages.find(l => l.uid === context.uid)
     //   );
