@@ -59,15 +59,15 @@ trigger:
   - push
 
 steps:
-- name: docker  
-  image: plugins/docker
-  settings:
-    username:
-      from_secret: DOCKER_USERNAME
-    password:
-      from_secret: DOCKER_PASSWORD
-    repo: komakio/website
-    tags: ${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}
+# - name: docker  
+#   image: plugins/docker
+#   settings:
+#     username:
+#       from_secret: DOCKER_USERNAME
+#     password:
+#       from_secret: DOCKER_PASSWORD
+#     repo: komakio/website
+#     tags: ${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}
 
 - name: git deploy
   image: bitnami/git:2.26.2
@@ -75,16 +75,16 @@ steps:
   - mkdir $HOME/.ssh && echo "$GITHUB_SSH" > $HOME/.ssh/id_rsa
   - cat $HOME/.ssh/id_rsa
   - git clone git@github.com:wikibusiness/komak-k8s.git
-  - cd komak-k8s
-  - rm -f src/website-version.yaml
-  - "echo 'imageTag: ${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}' > src/website-version.yaml"
-  - "git add . && git commit -a -m 'Updated website to tag ${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}' && git push"
+  # - cd komak-k8s
+  # - rm -f src/website-version.yaml
+  # - "echo 'imageTag: ${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}' > src/website-version.yaml"
+  # - "git add . && git commit -a -m 'Updated website to tag ${DRONE_COMMIT_SHA}-${DRONE_BUILD_NUMBER}' && git push"
 
   environment:
     GITHUB_SSH:
-      from_secret: GITHUB_SSH
+      from_secret: GIT_SSH
 ---
 kind: signature
-hmac: 318329d320e69df7729b08eb3d93d55d0e540145c70003cfd72419b30c8830ad
+hmac: d1678ea89e264731e9d13c1183cde51d1a3039b004a353ae2526e35522c2318e
 
 ...
