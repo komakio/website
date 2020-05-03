@@ -8,7 +8,7 @@ interface StoryblokEntryProps {
       uuid: string;
       content: string;
       name: string;
-      translated_slugs: [{ lang: string; name: string; path: string }];
+      slug: string;
     };
   };
 }
@@ -43,6 +43,7 @@ export const StoryblokEntry: FC<StoryblokEntryProps> = memo(
       blok: { ...story.content },
       lang,
       title: pageContext.story.name,
+      slug: pageContext.story.slug,
     });
   }
 );

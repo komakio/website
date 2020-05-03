@@ -26,6 +26,7 @@ class StoryblokEntry extends React.Component<
       id: string;
       lang: string;
       name: string;
+      slug: string;
       content: { _uid: string; component: string };
     };
   }
@@ -88,7 +89,7 @@ class StoryblokEntry extends React.Component<
       return <Loading />;
     }
 
-    const { content, lang, name } = story;
+    const { content, lang, name, slug } = story;
     return (
       <SbEditable content={content}>
         <GlobalStyles />
@@ -97,6 +98,7 @@ class StoryblokEntry extends React.Component<
             key: content._uid,
             blok: content,
             lang,
+            slug,
             title: name,
           })}
         </div>

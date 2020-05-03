@@ -21,24 +21,24 @@ const Container = styled.div`
 `;
 
 export const HeaderLink: StoryblokComponent<HeaderLinkProps> = ({ blok }) => {
-  const language = useLanguage();
-
-  const link =
-    blok.link.cached_url ||
-    Language.getLanguageLink(language, blok.link.cached_url);
   const linkStyles = { margin: '0 12px' };
 
   const renderElem = () => {
     if (blok.isButton) {
       return (
-        <Button href={link} theme="white" size="medium" style={linkStyles}>
+        <Button
+          href={blok.link.cached_url}
+          theme="white"
+          size="medium"
+          style={linkStyles}
+        >
           {blok.title}
         </Button>
       );
     }
 
     return (
-      <Link to={link} style={linkStyles}>
+      <Link to={blok.link.cached_url} style={linkStyles}>
         {blok.title}
       </Link>
     );

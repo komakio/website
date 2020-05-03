@@ -4,11 +4,7 @@ export interface PageContext {
   lang: string;
   title: string;
   uid?: string;
-  alternateLanguages: {
-    lang: string;
-    name: string;
-    path: string;
-  }[];
+  slug?: string;
   description?: string;
   image?: string;
 }

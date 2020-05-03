@@ -6,11 +6,7 @@ interface StoryblokComponentProps<T = any> {
   blok: StoryblokSubElement<T>;
   lang?: string;
   title?: string;
-  alternateLanguages?: {
-    lang: string;
-    name: string;
-    path: string;
-  }[];
+  slug?: string;
 }
 
 interface Blok {

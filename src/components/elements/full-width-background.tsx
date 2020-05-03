@@ -79,11 +79,7 @@ export const FullWidthBackground: StoryblokComponent<FullWidthBackgroundProps> =
           <ContentBlock>
             <h1>{title}</h1>
             <h2>{subtitle}</h2>
-            <Button
-              href={Language.getLanguageLink(language, ctaLink.cached_url)}
-            >
-              {ctaLabel}
-            </Button>
+            <Button href={ctaLink.cached_url}>{ctaLabel}</Button>
           </ContentBlock>
         </StyledBackgroundImage>
       </SbEditable>

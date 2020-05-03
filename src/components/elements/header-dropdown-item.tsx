@@ -14,13 +14,10 @@ interface HeaderDropdownItemProps {
 export const HeaderDropdownItem: StoryblokComponent<HeaderDropdownItemProps> = ({
   blok,
 }) => {
-  const language = useLanguage();
   return (
     <SbEditable content={blok}>
       <div className="item" key={blok.title}>
-        <Link to={Language.getLanguageLink(language, blok.link?.cached_url)}>
-          {blok.title}
-        </Link>
+        <Link to={blok.link.cached_url}>{blok.title}</Link>
       </div>
     </SbEditable>
   );

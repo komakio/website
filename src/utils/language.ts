@@ -9,14 +9,6 @@ export class Language {
     l => l.split('-')[0]
   );
 
-  public static getLanguageLink(currentLanguage: string, uid: string) {
-    const path = uid === 'home' ? '' : `/${uid}`;
-    if (currentLanguage === this.defaultLang) {
-      return path;
-    }
-    return `/${currentLanguage}${path}`;
-  }
-
   public static detect() {
     const localStorageValue = this.getFromLocalStorage();
     const path = this.getFromPath();

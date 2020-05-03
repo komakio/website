@@ -57,7 +57,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ open, onClose }) => {
           </Link>
         </h1>
 
-        {topMenus?.map(element => {
+        {/* {topMenus?.map(element => {
           const link = Language.getLanguageLink(
             language,
             element.menu_link?._meta.uid
@@ -97,7 +97,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ open, onClose }) => {
           };
 
           return <NavItem key={element.title}>{renderElement()}</NavItem>;
-        })}
+        })} */}
       </StyledMenu>
     </>
   );

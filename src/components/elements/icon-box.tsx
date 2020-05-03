@@ -43,7 +43,7 @@ export const IconBox: StoryblokComponent<IconBoxProps> = memo(({ blok }) => {
   return (
     <SbEditable content={blok}>
       <Col key={title} xs={12} lg={4}>
-        <Box to={Language.getLanguageLink(language, link.cached_url)}>
+        <Box to={link.cached_url}>
           <FeatherIcon icon={icon} size={60} />
           <h3>{title}</h3>
           <p>{description}</p>

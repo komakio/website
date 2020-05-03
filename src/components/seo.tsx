@@ -4,28 +4,21 @@ import { usePageContext } from './page-context';
 import { Language } from '@utils/language';
 
 export const SEO: FC = memo(() => {
-  const {
-    title,
-    description,
-    lang,
-    alternateLanguages,
-    image,
-  } = usePageContext();
+  const { title, description, lang, slug, image } = usePageContext();
+
+  const otherLanguages = Language.languageTags.filter(l => l != lang);
 
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: lang === 'default' ? 'en' : lang,
       }}
       title={title}
       titleTemplate={`%s | Komak`}
-      link={alternateLanguages?.map(lang => ({
+      link={otherLanguages?.map(lang => ({
         rel: 'alternate',
-        hrefLang: lang.lang,
-        href: `https://komak.io${Language.getLanguageLink(
-          lang.lang,
-          lang.path
-        )}`,
+        hrefLang: lang === 'default' ? 'en' : lang,
+        href: `https://komak.io${lang === 'default' ? '' : `/${lang}`}/${slug}`,
       }))}
       meta={[
         {

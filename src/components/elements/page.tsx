@@ -14,13 +14,13 @@ interface PageProps {
 }
 
 export const Page: StoryblokComponent<PageProps> = memo(
-  ({ blok, lang, title, alternateLanguages }) => {
+  ({ blok, lang, title, slug }) => {
     return (
       <Layout
         context={{
           lang,
           title: blok.title || title,
-          alternateLanguages,
+          slug,
           description: blok.description,
           image: blok.image,
         }}
