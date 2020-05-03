@@ -18,7 +18,6 @@ export const Header = () => {
       }
     }
   `);
-  console.log(lang);
   const story = data.allStoryblokEntry?.edges?.find(
     e => e.node.lang === (lang || 'default')
   )?.node;

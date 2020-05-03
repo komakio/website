@@ -1,12 +1,12 @@
 import { Link } from 'gatsby';
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { colors } from '@utils/colors';
 import { Language } from '@utils/language';
 import { useLanguage } from '@components/page-context';
 import { Button } from '@components/button';
 
-export const menuWidth = 200;
+export const menuWidth = 300;
 
 const StyledMenu = styled.section<{ open: boolean }>`
   position: fixed;
@@ -38,14 +38,17 @@ const NavItem = styled.div`
 `;
 
 interface MobileMenuProps {
+  elements: any[];
   open: boolean;
   onClose: () => void;
 }
 
-export const MobileMenu: FC<MobileMenuProps> = ({ open, onClose }) => {
+export const MobileMenu: FC<MobileMenuProps> = ({
+  open,
+  onClose,
+  elements,
+}) => {
   const language = useLanguage();
-
-  const topMenus = [];
 
   return (
     <>
@@ -57,47 +60,38 @@ export const MobileMenu: FC<MobileMenuProps> = ({ open, onClose }) => {
           </Link>
         </h1>
 
-        {/* {topMenus?.map(element => {
-          const link = Language.getLanguageLink(
-            language,
-            element.menu_link?._meta.uid
-          );
-
+        {elements?.map(element => {
           const renderElement = () => {
-            if (element.button) {
+            if (element.isButton) {
               return (
-                <Button href={link} theme="white" size="medium">
+                <Button
+                  href={element.link?.cached_url}
+                  theme="white"
+                  size="medium"
+                >
                   {element.title}
                 </Button>
               );
             }
 
-            if (element.children) {
-              return element.children.map((child, index) => (
+            if (element.items) {
+              return element.items.map((item, index) => (
                 <div
                   style={{
-                    marginBottom:
-                      index !== element.children.length - 1 ? 30 : 0,
+                    marginBottom: index !== element.items.length - 1 ? 30 : 0,
                   }}
-                  key={child.dropdown_item_title}
+                  key={item.title}
                 >
-                  <Link
-                    to={Language.getLanguageLink(
-                      language,
-                      child.dropdown_item_link._meta.uid
-                    )}
-                  >
-                    {child.dropdown_item_title}
-                  </Link>
+                  <Link to={item.link?.cached_url}>{item.title}</Link>
                 </div>
               ));
             }
 
-            return <Link to={link}>{element.title}</Link>;
+            return <Link to={element.link?.cached_url}>{element.title}</Link>;
           };
 
           return <NavItem key={element.title}>{renderElement()}</NavItem>;
-        })} */}
+        })}
       </StyledMenu>
     </>
   );

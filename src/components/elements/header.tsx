@@ -90,6 +90,7 @@ export const Header: StoryblokComponent<HeaderProps> = ({ blok }) => {
     <SbEditable content={blok}>
       <StyledHeader>
         <MobileMenu
+          elements={blok.elements}
           open={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}
         />
@@ -114,17 +115,6 @@ export const Header: StoryblokComponent<HeaderProps> = ({ blok }) => {
                 blok: item,
               });
             })}
-            {/* {blok.elements?.map(element => {
-            return (
-              <HeaderLink
-                key={
-                  element.menu_link?._meta.uid ||
-                  JSON.stringify(element.children)
-                }
-                element={element}
-              />
-            );
-          })} */}
           </nav>
         </Container>
       </StyledHeader>
